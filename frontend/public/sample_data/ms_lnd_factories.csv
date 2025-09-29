@@ -1,0 +1,5 @@
+factory_id,factory_name,lat,lon,production_cost
+F01,Factory_1,35.681548,139.724872,24.21
+F02,Factory_2,35.805623,139.783614,27.92
+F03,Factory_3,35.32574,139.717603,12.79
+F04,Factory_4,35.527681,139.50955,28.86

@@ -1,0 +1,16 @@
+facility_id,facility_name,lat,lon,capacity,fixed_cost,facility_type
+FAC_001,Facility_1,35.664043,139.607497,842,25377,Cross-Dock
+FAC_002,Facility_2,35.481949,139.775748,738,15664,Cross-Dock
+FAC_003,Facility_3,35.646002,139.612026,520,24944,Distribution Center
+FAC_004,Facility_4,35.674643,139.62494,139,27730,Distribution Center
+FAC_005,Facility_5,35.625444,139.680733,199,12428,Distribution Center
+FAC_006,Facility_6,35.667155,139.586635,511,12338,Warehouse
+FAC_007,Facility_7,35.85817,139.633371,943,11442,Cross-Dock
+FAC_008,Facility_8,35.611938,139.65344,511,19981,Distribution Center
+FAC_009,Facility_9,35.77681,139.60497,820,13316,Cross-Dock
+FAC_010,Facility_10,35.675829,139.809846,637,16578,Distribution Center
+FAC_011,Facility_11,35.677325,139.507403,151,47804,Warehouse
+FAC_012,Facility_12,35.646985,139.704854,615,12521,Warehouse
+FAC_013,Facility_13,35.662714,139.794195,322,24601,Cross-Dock
+FAC_014,Facility_14,35.678692,139.614704,639,21046,Warehouse
+FAC_015,Facility_15,35.635074,139.643621,293,12863,Warehouse

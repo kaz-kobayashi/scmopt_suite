@@ -1,0 +1,6 @@
+product_id,product_name,unit_weight,unit_volume,category
+P01,Product_1,3.19,1.42,Chemicals
+P02,Product_2,4.68,1.635,Electronics
+P03,Product_3,0.97,0.967,Chemicals
+P04,Product_4,1.34,1.796,Food
+P05,Product_5,1.96,0.332,Electronics
