@@ -1,0 +1,30 @@
+resource writer  
+ interval 0 inf capacity 1  
+mode Mode[1]  
+ duration 1  
+ writer interval 0 inf requirement 1  
+mode Mode[2]  
+ duration 2  
+ writer interval 0 inf requirement 1  
+mode Mode[3]  
+ duration 3  
+ writer interval 0 inf requirement 1  
+mode Mode[4]  
+ duration 4  
+ writer interval 0 inf requirement 1  
+activity Act[1] 
+ duedate 5  
+ weight 1  
+ Mode[1]  
+activity Act[2] 
+ duedate 9  
+ weight 1  
+ Mode[2]  
+activity Act[3] 
+ duedate 6  
+ weight 1  
+ Mode[3]  
+activity Act[4] 
+ duedate 4  
+ weight 1  
+ Mode[4] 

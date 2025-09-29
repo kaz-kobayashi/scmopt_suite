@@ -1,0 +1,4 @@
+name,weight,volume,cust_value,dc_value,plnt_value,fixed_cost
+A,2.5,0.8,12,2,1,25
+B,1.8,0.6,8,1.5,1,18
+C,3.2,1.2,15,2.5,1.2,30

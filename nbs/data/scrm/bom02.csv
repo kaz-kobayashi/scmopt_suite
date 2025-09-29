@@ -1,0 +1,14 @@
+,child,parent,units
+0,Manuf_0001,Trans_0001,1
+1,Manuf_0001,Trans_0002,1
+2,Manuf_0001,Trans_0003,1
+3,Manuf_0001,Trans_0004,1
+4,Manuf_0002,Retail_0001,1
+5,Manuf_0003,Retail_0002,1
+6,Manuf_0004,Retail_0003,1
+7,Manuf_0005,Retail_0003,1
+8,Manuf_0005,Retail_0004,1
+9,Trans_0001,Manuf_0002,1
+10,Trans_0002,Manuf_0003,1
+11,Trans_0003,Manuf_0004,1
+12,Trans_0004,Manuf_0005,1

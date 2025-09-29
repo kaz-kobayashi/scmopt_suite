@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Supply Chain Modeling Language クラス">
+
+<title>scmopt2 - SCML2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="scmopt2 - SCML2">
+<meta property="og:description" content="">
+<meta property="og:site-name" content="scmopt2">
+<meta name="twitter:title" content="scmopt2 - SCML2">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">scmopt2</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/scmopt/scmopt2" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./scml2.html">SCML2</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01abc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">サプライ・チェイン基本分析システム SCBAS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scml2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">SCML2</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#picklable-base-model" id="toc-picklable-base-model" class="nav-link active" data-scroll-target="#picklable-base-model">Picklable Base Model</a>
+  <ul>
+  <li><a href="#picklablebasemodel" id="toc-picklablebasemodel" class="nav-link" data-scroll-target="#picklablebasemodel">PicklableBaseModel</a></li>
+  </ul></li>
+  <li><a href="#period" id="toc-period" class="nav-link" data-scroll-target="#period">Period</a>
+  <ul>
+  <li><a href="#period-1" id="toc-period-1" class="nav-link" data-scroll-target="#period-1">Period</a></li>
+  </ul></li>
+  <li><a href="#resource" id="toc-resource" class="nav-link" data-scroll-target="#resource">Resource</a>
+  <ul>
+  <li><a href="#resource-1" id="toc-resource-1" class="nav-link" data-scroll-target="#resource-1">Resource</a></li>
+  </ul></li>
+  <li><a href="#product" id="toc-product" class="nav-link" data-scroll-target="#product">Product</a>
+  <ul>
+  <li><a href="#product-1" id="toc-product-1" class="nav-link" data-scroll-target="#product-1">Product</a></li>
+  </ul></li>
+  <li><a href="#mode" id="toc-mode" class="nav-link" data-scroll-target="#mode">Mode</a>
+  <ul>
+  <li><a href="#mode-1" id="toc-mode-1" class="nav-link" data-scroll-target="#mode-1">Mode</a></li>
+  </ul></li>
+  <li><a href="#activity" id="toc-activity" class="nav-link" data-scroll-target="#activity">Activity</a>
+  <ul>
+  <li><a href="#activity-1" id="toc-activity-1" class="nav-link" data-scroll-target="#activity-1">Activity</a></li>
+  </ul></li>
+  <li><a href="#node" id="toc-node" class="nav-link" data-scroll-target="#node">Node</a>
+  <ul>
+  <li><a href="#node-1" id="toc-node-1" class="nav-link" data-scroll-target="#node-1">Node</a></li>
+  </ul></li>
+  <li><a href="#arc" id="toc-arc" class="nav-link" data-scroll-target="#arc">Arc</a>
+  <ul>
+  <li><a href="#arc-1" id="toc-arc-1" class="nav-link" data-scroll-target="#arc-1">Arc</a></li>
+  </ul></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a>
+  <ul>
+  <li><a href="#model-1" id="toc-model-1" class="nav-link" data-scroll-target="#model-1">Model</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/scmopt/scmopt2/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SCML2</h1>
+</div>
+
+<div>
+  <div class="description">
+    Supply Chain Modeling Language クラス
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="picklable-base-model" class="level2">
+<h2 class="anchored" data-anchor-id="picklable-base-model">Picklable Base Model</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L42" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="picklablebasemodel" class="level3">
+<h3 class="anchored" data-anchor-id="picklablebasemodel">PicklableBaseModel</h3>
+<blockquote class="blockquote">
+<pre><code> PicklableBaseModel ()</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+</section>
+</section>
+<section id="period" class="level2">
+<h2 class="anchored" data-anchor-id="period">Period</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L52" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="period-1" class="level3">
+<h3 class="anchored" data-anchor-id="period-1">Period</h3>
+<blockquote class="blockquote">
+<pre><code> Period (name:str,
+         start:Union[datetime.datetime,datetime.date,datetime.time,NoneTyp
+         e]=None, finish:Union[datetime.datetime,datetime.date,datetime.ti
+         me,NoneType]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>period1 <span class="op">=</span> Period(name<span class="op">=</span><span class="st">"Period1"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                 start<span class="op">=</span><span class="st">'2023-04-23T10:20:30.400+02:30'</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 finish<span class="op">=</span><span class="st">'2023-04-28T10:20:30.400+02:30'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>period1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Period(name='Period1', start=datetime.datetime(2023, 4, 23, 10, 20, 30, 400000, tzinfo=datetime.timezone(datetime.timedelta(seconds=9000))), finish=datetime.datetime(2023, 4, 28, 10, 20, 30, 400000, tzinfo=datetime.timezone(datetime.timedelta(seconds=9000))))</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="resource" class="level2">
+<h2 class="anchored" data-anchor-id="resource">Resource</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L58" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="resource-1" class="level3">
+<h3 class="anchored" data-anchor-id="resource-1">Resource</h3>
+<blockquote class="blockquote">
+<pre><code> Resource (name:str, capacity:Union[int,Dict,NoneType]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>res1 <span class="op">=</span> Resource(name<span class="op">=</span><span class="st">"Res1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="product" class="level2">
+<h2 class="anchored" data-anchor-id="product">Product</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L63" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="product-1" class="level3">
+<h3 class="anchored" data-anchor-id="product-1">Product</h3>
+<blockquote class="blockquote">
+<pre><code> Product (name:str, weight:Optional[float]=None,
+          volume:Optional[float]=None,
+          value:Optional[Dict[str,float]]=None,
+          safety_inventory:Optional[float]=None,
+          initial_inventory:Optional[float]=None,
+          target_inventory:Optional[float]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prod1 <span class="op">=</span> Product(name <span class="op">=</span> <span class="st">"Prod1"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>prod1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Product(name='Prod1', weight=None, volume=None, value=None, safety_inventory=None, initial_inventory=None, target_inventory=None)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>prod1.addValue(<span class="st">"Node1"</span>, <span class="fl">100.</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>prod1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prod1.to_pickle(<span class="st">"sample1"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"sample1.pkl"</span>,<span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    prod2 <span class="op">=</span> pickle.load(f)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>prod2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="mode" class="level2">
+<h2 class="anchored" data-anchor-id="mode">Mode</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L89" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="mode-1" class="level3">
+<h3 class="anchored" data-anchor-id="mode-1">Mode</h3>
+<blockquote class="blockquote">
+<pre><code> Mode (name:str, components:Optional[Dict[str,float]]=None,
+       byproducts:Optional[Dict[str,float]]=None,
+       requirement:Optional[Dict[Tuple,Dict]]=None,
+       duration:Optional[int]=None, breakable:Optional[Dict]=None,
+       parallel:Optional[Dict]=None, state:Optional[Dict]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mode1 <span class="op">=</span> Mode(name <span class="op">=</span> <span class="st">"Mode1"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mode2 <span class="op">=</span> Mode(name <span class="op">=</span> <span class="st">"Mode2"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>mode1.addResource(res1,<span class="dv">1</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>mode1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="activity" class="level2">
+<h2 class="anchored" data-anchor-id="activity">Activity</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L123" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="activity-1" class="level3">
+<h3 class="anchored" data-anchor-id="activity-1">Activity</h3>
+<blockquote class="blockquote">
+<pre><code> Activity (name:str, atype:Optional[str]=None,
+           modes:Optional[Dict[str,__main__.Mode]]=None,
+           product:__main__.Product, duedate:Union[str,int,NoneType]=None,
+           backward:Optional[bool]=None, weight:Optional[int]=None,
+           autoselect:Optional[bool]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>act1 <span class="op">=</span> Activity(name<span class="op">=</span><span class="st">"Act1"</span>, product<span class="op">=</span> prod1)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>act1.addMode(mode1)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>act1.addModes([mode1,mode2])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>act1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Activity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="node" class="level2">
+<h2 class="anchored" data-anchor-id="node">Node</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L145" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="node-1" class="level3">
+<h3 class="anchored" data-anchor-id="node-1">Node</h3>
+<blockquote class="blockquote">
+<pre><code> Node (id:Optional[int]=None, name:str, location:Union[NoneType,__main__.J
+       sonWrapperValue,Tuple[float,float]]=None,
+       activities:Optional[Dict[str,__main__.Activity]]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>node1 <span class="op">=</span> Node(name<span class="op">=</span><span class="st">"Node1"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>node2 <span class="op">=</span> Node(name<span class="op">=</span><span class="st">"Node2"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>node1.addActivity(act1)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>node1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Node(id=None, name='Node1', location=None, activities={'Act1': Activity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)})</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="arc" class="level2">
+<h2 class="anchored" data-anchor-id="arc">Arc</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scml2.py#L163" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="arc-1" class="level3">
+<h3 class="anchored" data-anchor-id="arc-1">Arc</h3>
+<blockquote class="blockquote">
+<pre><code> Arc (source:__main__.Node, sink:__main__.Node,
+      activitys:Optional[Dict[str,__main__.Activity]]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>arc1 <span class="op">=</span> Arc(source<span class="op">=</span>node1,sink<span class="op">=</span>node2)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>arc1.addActivity(act1)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>arc1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Arc(source=Node(id=None, name='Node1', location=None, activity_dict={'Act1': Activity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)}), sink=Node(id=None, name='Node2', location=None, activity_dict=None), activitys={'Act1': Activity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)})</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">Model</h2>
+<hr>
+<p><a href="https://github.com/scmopt/scmopt2/blob/main/scmopt2/scop.py#L76" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="model-1" class="level3">
+<h3 class="anchored" data-anchor-id="model-1">Model</h3>
+<blockquote class="blockquote">
+<pre><code> Model (name:str='',
+        activities:Optional[Dict[str,__main__.Activity]]=None,
+        resources:Optional[Dict[str,__main__.Resource]]=None,
+        products:Optional[Dict[str,__main__.Product]]=None,
+        periods:Optional[Dict[str,__main__.Period]]=None,
+        nodes:Optional[Dict[str,__main__.Node]]=None,
+        arcs:Optional[Dict[str,__main__.Arc]]=None)</code></pre>
+</blockquote>
+<p>Pickleを付加したベースモデル</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> Model(name<span class="op">=</span><span class="st">"model1"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>model1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Model(name='model1', activityies=None, resources=None, products=None, periods=None, nodes=None, arcs=None)</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

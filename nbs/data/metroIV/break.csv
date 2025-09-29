@@ -1,0 +1,3 @@
+,description,time_windows,service
+0,lunch,"[(10800,18000)]",3600
+1,supper,"[(32400,39600)]",1800

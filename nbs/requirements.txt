@@ -1,0 +1,47 @@
+# SCBAS - Supply Chain Basic Analytics System Requirements
+
+# Core data processing
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Data validation and configuration
+pydantic>=1.10.0
+pyyaml>=6.0
+
+# Visualization
+plotly>=5.0.0
+colorlover>=0.3.0
+
+# Web framework (for dashboard)
+streamlit>=1.28.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Development tools (optional)
+black>=22.0.0
+flake8>=5.0.0
+mypy>=0.991
+
+# Jupyter
+jupyter>=1.0.0
+jupyterlab>=3.5.0
+ipython>=8.0.0
+
+# Additional scientific computing
+scipy>=1.9.0
+scikit-learn>=1.1.0
+
+# Utilities
+python-dotenv>=0.19.0
+pathlib2>=2.3.0
+
+# Geographic processing (optional)
+geopy>=2.3.0
+
+# Network analysis (optional)
+networkx>=2.8.0
+
+# Additional plotting
+matplotlib>=3.5.0

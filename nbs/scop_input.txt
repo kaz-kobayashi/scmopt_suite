@@ -1,0 +1,11 @@
+variable A in { 0,1,2 } 
+ variable B in { 0,1,2 } 
+ variable C in { 0,1,2 } 
+ variable D in { 0,1,2 } 
+ variable E in { 0,1,2 } 
+ target = 0 
+ LB0: weight= inf type=linear 1(A,0) 1(B,0) 1(C,0) 1(D,0) 1(E,0) >=0
+ LB1: weight= inf type=linear 1(A,1) 1(B,1) 1(C,1) 1(D,1) 1(E,1) >=0
+ LB2: weight= inf type=linear 1(A,2) 1(B,2) 1(C,2) 1(D,2) 1(E,2) >=0
+ obj: weight= 1 type=linear 15(A,0) 20(A,1) 30(A,2) 7(B,0) 15(B,1) 12(B,2) 25(C,0) 10(C,1) 13(C,2) 15(D,0) 18(D,1) 3(D,2) 5(E,0) 12(E,1) 17(E,2) <=0
+ conflict: weight=100 type=quadratic 1(A,0)(C,0) 1(A,1)(C,1) 1(A,2)(C,2) =0

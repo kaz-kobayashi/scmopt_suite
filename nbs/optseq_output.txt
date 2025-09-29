@@ -1,0 +1,35 @@
+# reading data ... done: 0.00(s)
+# random seed: 1
+# tabu tenure: 1
+# cpu time limit: 1.00(s)
+# iteration limit: 1073741823
+# computing all-pairs longest paths and strongly connected components ... done
+#scc 6
+objective value = 5 (cpu time = 0.00(s), iteration = 0)
+0: 0.00(s): 5/5
+objective value = 3 (cpu time = 0.00(s), iteration = 1)
+
+--- best solution ---
+source,---, 0 0
+sink,---, 10 10
+Act[1],---, 4 4--5 5
+Act[2],---, 8 8--10 10
+Act[3],---, 5 5--8 8
+Act[4],---, 0 0--4 4
+--- tardy activity ---
+Act[2]: 1
+Act[3]: 2
+--- resource residuals ---
+writer: [0,10] 0 
+
+--- best activity list ---
+source ---
+Act[4] ---
+Act[1] ---
+Act[3] ---
+Act[2] ---
+sink ---
+
+objective value = 3
+cpu time = 0.00/1.00(s)
+iteration = 2/15672

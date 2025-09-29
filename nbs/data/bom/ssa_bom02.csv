@@ -1,0 +1,14 @@
+,child,parent,units,allocation
+0,Manuf_0001,Trans_0001,1,0.25
+1,Manuf_0001,Trans_0002,1,0.25
+2,Manuf_0001,Trans_0003,1,0.25
+3,Manuf_0001,Trans_0004,1,0.25
+4,Manuf_0002,Retail_0001,1,1.0
+5,Manuf_0003,Retail_0002,1,1.0
+6,Manuf_0004,Retail_0003,1,1.0
+7,Manuf_0005,Retail_0003,1,0.5
+8,Manuf_0005,Retail_0004,1,0.5
+9,Trans_0001,Manuf_0002,1,1.0
+10,Trans_0002,Manuf_0003,1,1.0
+11,Trans_0003,Manuf_0004,1,1.0
+12,Trans_0004,Manuf_0005,1,1.0

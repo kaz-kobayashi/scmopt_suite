@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "scmopt2"
+  site-url: "https://scmopt.github.io/scmopt2"
+  description: "scmopt2"
+  repo-branch: main
+  repo-url: "https://github.com/scmopt/scmopt2"

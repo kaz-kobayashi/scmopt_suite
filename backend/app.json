@@ -1,0 +1,38 @@
+{
+  "name": "SCMOPT2 Supply Chain Optimization Suite",
+  "description": "Supply Chain Management Optimization application with authentication",
+  "keywords": ["python", "fastapi", "supply-chain", "optimization"],
+  "website": "https://github.com/yourusername/scmopt_suite",
+  "repository": "https://github.com/yourusername/scmopt_suite",
+  "stack": "heroku-22",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0"
+    },
+    {
+      "plan": "heroku-redis:mini"
+    }
+  ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "Secret key for JWT tokens",
+      "generator": "secret"
+    },
+    "PYTHONPATH": "/app"
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}

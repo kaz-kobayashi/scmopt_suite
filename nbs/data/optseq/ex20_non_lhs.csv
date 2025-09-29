@@ -1,0 +1,8 @@
+,res_name,term,act_name,mode_name
+0,constraint_1,1,Act[A],Mode[A_0]
+1,constraint_1,-1,Act[B],Mode[B_0]
+2,constraint_2,1,Act[A],Mode[A_1]
+3,constraint_2,1,Act[B],Mode[B_1]
+4,constraint_3,1,Act[A],Mode[A_2]
+5,constraint_3,-1,Act[B],Mode[B_2]
+6,constraint_3,-1,Act[B],Mode[B_3]

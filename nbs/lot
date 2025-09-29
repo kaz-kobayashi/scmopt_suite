@@ -1,0 +1,113 @@
+digraph G {
+	graph [rankdir=LR]
+	Res0 [color=green shape=trapezium]
+	Res1 [color=green shape=trapezium]
+	A -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[A]" {
+		color=lightgrey style=filled
+		A [color=red shape=rectangle]
+		"A
+ prod(A)" [color=yellow shape=oval]
+		A [color=blue shape=box3d]
+		A -> A [arrowhead=tee color=blue style=dotted]
+	}
+	B -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[B]" {
+		color=lightgrey style=filled
+		B [color=red shape=rectangle]
+		"B
+ prod(B)" [color=yellow shape=oval]
+		B [color=blue shape=box3d]
+		B -> B [arrowhead=tee color=blue style=dotted]
+	}
+	C -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[C]" {
+		color=lightgrey style=filled
+		C [color=red shape=rectangle]
+		"C
+ prod(C)" [color=yellow shape=oval]
+		C [color=blue shape=box3d]
+		C -> C [arrowhead=tee color=blue style=dotted]
+	}
+	D -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[D]" {
+		color=lightgrey style=filled
+		D [color=red shape=rectangle]
+		"D
+ prod(D)" [color=yellow shape=oval]
+		D [color=blue shape=box3d]
+		D -> D [arrowhead=tee color=blue style=dotted]
+	}
+	E -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[E]" {
+		color=lightgrey style=filled
+		E [color=red shape=rectangle]
+		"E
+ prod(E)" [color=yellow shape=oval]
+		E [color=blue shape=box3d]
+		E -> E [arrowhead=tee color=blue style=dotted]
+	}
+	F -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[F]" {
+		color=lightgrey style=filled
+		F [color=red shape=rectangle]
+		"F
+ prod(F)" [color=yellow shape=oval]
+		F [color=blue shape=box3d]
+		F -> F [arrowhead=tee color=blue style=dotted]
+	}
+	G -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[G]" {
+		color=lightgrey style=filled
+		G [color=red shape=rectangle]
+		"G
+ prod(G)" [color=yellow shape=oval]
+		G [color=blue shape=box3d]
+		G -> G [arrowhead=tee color=blue style=dotted]
+	}
+	H -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[H]" {
+		color=lightgrey style=filled
+		H [color=red shape=rectangle]
+		"H
+ prod(H)" [color=yellow shape=oval]
+		H [color=blue shape=box3d]
+		H -> H [arrowhead=tee color=blue style=dotted]
+	}
+	I -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[I]" {
+		color=lightgrey style=filled
+		I [color=red shape=rectangle]
+		"I
+ prod(I)" [color=yellow shape=oval]
+		I [color=blue shape=box3d]
+		I -> I [arrowhead=tee color=blue style=dotted]
+	}
+	J -> Res1 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[J]" {
+		color=lightgrey style=filled
+		J [color=red shape=rectangle]
+		"J
+ prod(J)" [color=yellow shape=oval]
+		J [color=blue shape=box3d]
+		J -> J [arrowhead=tee color=blue style=dotted]
+	}
+	ABCDE -> Res0 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[ABCDE]" {
+		color=lightgrey style=filled
+		ABCDE [color=red shape=rectangle]
+		"ABCDE
+ prod(ABCDE)" [color=yellow shape=oval]
+		ABCDE [color=blue shape=box3d]
+		ABCDE -> ABCDE [arrowhead=tee color=blue style=dotted]
+	}
+	FGHIJ -> Res0 [arrowhead=box color=green style=dashed]
+	subgraph "cluster[FGHIJ]" {
+		color=lightgrey style=filled
+		FGHIJ [color=red shape=rectangle]
+		"FGHIJ
+ prod(FGHIJ)" [color=yellow shape=oval]
+		FGHIJ [color=blue shape=box3d]
+		FGHIJ -> FGHIJ [arrowhead=tee color=blue style=dotted]
+	}
+}

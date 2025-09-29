@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "01abc.html",
+    "href": "01abc.html",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "",
+    "text": "サプライ・チェイン・アナリティクスで最初に行うことは、需要データに対するABC分析である。 商品の需要量というのは、売れるものはたくさん売れるが、その数はごく少数であり、他のたくさんのそんなに売れない商品が山ほどあるという性質を持つ。 これをパレートの法則（全体の数値の大部分は、全体を構成するうちの一部の要素が生み出しているという理論。別名、80:20の法則、もう1つの別名、ばらつきの法則）と呼ぶ。\nここでは、仮想の企業の需要を生成し、それに対してABC分析を行う。 同時に、商品を売れている順に順位をつけ、順位の時系列的な変化を示すランク分析を提案する。\nさらに、簡単な在庫分析を行う。これは、平均需要量や生産固定費用から、生産ロットサイズや安全在庫量を計算するものであり、 古典的な経済発注量モデルや安全在庫モデル（新聞売り子モデル）に基づくものである。"
+  },
+  {
+    "objectID": "01abc.html#はじめに",
+    "href": "01abc.html#はじめに",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "",
+    "text": "サプライ・チェイン・アナリティクスで最初に行うことは、需要データに対するABC分析である。 商品の需要量というのは、売れるものはたくさん売れるが、その数はごく少数であり、他のたくさんのそんなに売れない商品が山ほどあるという性質を持つ。 これをパレートの法則（全体の数値の大部分は、全体を構成するうちの一部の要素が生み出しているという理論。別名、80:20の法則、もう1つの別名、ばらつきの法則）と呼ぶ。\nここでは、仮想の企業の需要を生成し、それに対してABC分析を行う。 同時に、商品を売れている順に順位をつけ、順位の時系列的な変化を示すランク分析を提案する。\nさらに、簡単な在庫分析を行う。これは、平均需要量や生産固定費用から、生産ロットサイズや安全在庫量を計算するものであり、 古典的な経済発注量モデルや安全在庫モデル（新聞売り子モデル）に基づくものである。"
+  },
+  {
+    "objectID": "01abc.html#データの読み込み",
+    "href": "01abc.html#データの読み込み",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "データの読み込み",
+    "text": "データの読み込み\nまずは基本となるデータを読み込む。製品データはオプションであり、需要を売り上げや需要を重量や容量で評価したい場合に使う。 基本は、需要データ demand_df だけを使えば十分である。\n需要データは以下の列をもつ．\n\ndate: 日付\ncust: 顧客名\nprod: 製品名\ndemand: 需要量\nsales: 売上\n\n需要量demandと売上の何れかに対して，ABC分析を行う．\n\nprod_df = pd.read_csv(folder+\"Prod.csv\",index_col=0)\nprod_df.head()\n\n\n\n\n\n\n\n\nname\nweight\nvolume\ncust_value\ndc_value\nplnt_value\nfixed_cost\n\n\n\n\n0\nA\n2\n0\n7\n1\n1\n14\n\n\n1\nB\n5\n0\n5\n1\n1\n14\n\n\n2\nC\n1\n0\n5\n1\n1\n19\n\n\n3\nD\n3\n0\n5\n1\n1\n17\n\n\n4\nE\n1\n0\n10\n1\n1\n18\n\n\n\n\n\n\n\n\ndemand_df = pd.read_csv(folder+\"demand.csv\",index_col=0)\ndemand_df.head()\n\n\n\n\n\n\n\n\ndate\ncust\nprod\ndemand\nsales\n\n\nindex\n\n\n\n\n\n\n\n\n\n0\n2019-01-01\n札幌市\nA\n10\n10\n\n\n1\n2019-01-01\n札幌市\nB\n10\n10\n\n\n2\n2019-01-01\n札幌市\nC\n3\n3\n\n\n3\n2019-01-01\n札幌市\nD\n0\n0\n\n\n4\n2019-01-01\n札幌市\nE\n37\n37"
+  },
+  {
+    "objectID": "01abc.html#kaggleデータの読み込み",
+    "href": "01abc.html#kaggleデータの読み込み",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "Kaggleデータの読み込み",
+    "text": "Kaggleデータの読み込み\n以下で配布されているデータを読み込む．\nhttps://www.kaggle.com/kyanyoga/sample-sales-data\nKaggleデータを用いたい場合には，以下を実行する． ただし，製品データがないので，製品関連の関数は適用できない．\n\nkaggle_df = pd.read_csv(folder + \"sales_data_sample.csv\",encoding=\"latin\")\nkaggle_df.head()\n\n\n\n\n\n\n\n\nORDERNUMBER\nQUANTITYORDERED\nPRICEEACH\nORDERLINENUMBER\nSALES\nORDERDATE\nSTATUS\nQTR_ID\nMONTH_ID\nYEAR_ID\n...\nADDRESSLINE1\nADDRESSLINE2\nCITY\nSTATE\nPOSTALCODE\nCOUNTRY\nTERRITORY\nCONTACTLASTNAME\nCONTACTFIRSTNAME\nDEALSIZE\n\n\n\n\n0\n10107\n30\n95.70\n2\n2871.00\n2/24/2003 0:00\nShipped\n1\n2\n2003\n...\n897 Long Airport Avenue\nNaN\nNYC\nNY\n10022\nUSA\nNaN\nYu\nKwai\nSmall\n\n\n1\n10121\n34\n81.35\n5\n2765.90\n5/7/2003 0:00\nShipped\n2\n5\n2003\n...\n59 rue de l'Abbaye\nNaN\nReims\nNaN\n51100\nFrance\nEMEA\nHenriot\nPaul\nSmall\n\n\n2\n10134\n41\n94.74\n2\n3884.34\n7/1/2003 0:00\nShipped\n3\n7\n2003\n...\n27 rue du Colonel Pierre Avia\nNaN\nParis\nNaN\n75508\nFrance\nEMEA\nDa Cunha\nDaniel\nMedium\n\n\n3\n10145\n45\n83.26\n6\n3746.70\n8/25/2003 0:00\nShipped\n3\n8\n2003\n...\n78934 Hillside Dr.\nNaN\nPasadena\nCA\n90003\nUSA\nNaN\nYoung\nJulie\nMedium\n\n\n4\n10159\n49\n100.00\n14\n5205.27\n10/10/2003 0:00\nShipped\n4\n10\n2003\n...\n7734 Strong St.\nNaN\nSan Francisco\nCA\nNaN\nUSA\nNaN\nBrown\nJulie\nMedium\n\n\n\n\n5 rows × 25 columns\n\n\n\n\nkaggle_df[\"date\"] = pd.to_datetime(kaggle_df.ORDERDATE)\nkaggle_df.rename(columns={\"PRODUCTLINE\":\"prod\", \"CITY\":\"cust\", \"QUANTITYORDERED\":\"demand\", \"SALES\":\"sales\"}, inplace=True)\nkaggle_demand_df = kaggle_df[[\"date\",\"cust\",\"prod\",\"demand\",\"sales\"]].copy()\nkaggle_demand_df.head()\n\n\n\n\n\n\n\n\ndate\ncust\nprod\ndemand\nsales\n\n\n\n\n0\n2003-02-24\nNYC\nMotorcycles\n30\n2871.00\n\n\n1\n2003-05-07\nReims\nMotorcycles\n34\n2765.90\n\n\n2\n2003-07-01\nParis\nMotorcycles\n41\n3884.34\n\n\n3\n2003-08-25\nPasadena\nMotorcycles\n45\n3746.70\n\n\n4\n2003-10-10\nSan Francisco\nMotorcycles\n49\n5205.27"
+  },
+  {
+    "objectID": "01abc.html#需要と売り上げのtreemapを生成する関数-demand_tree_map",
+    "href": "01abc.html#需要と売り上げのtreemapを生成する関数-demand_tree_map",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "需要と売り上げのtreemapを生成する関数 demand_tree_map",
+    "text": "需要と売り上げのtreemapを生成する関数 demand_tree_map\n引数： - 需要データフレーム（需要 demand と売り上げ sales の列を含む）\n返値： - Plotlyのtreemapオブジェクト\n\nsource\n\ndemand_tree_map\n\n demand_tree_map (demand_df:pandas.core.frame.DataFrame)\n\n需要と売り上げのtreemapを生成する関数\n\n\ndemand_tree_mapの使用例\nsales列がない場合には，dataモジュールのdemand_attribute_compute関数を用いてsales（売り上げ）列を計算することができる。\n需要のtreemapは，需要の大きさを面積とした階層図であり，売上は色で表現している．\n\nfig = demand_tree_map(demand_df);\nplotly.offline.plot(fig);"
+  },
+  {
+    "objectID": "01abc.html#abc分析とランク分析を行うための関数-abc_analysis",
+    "href": "01abc.html#abc分析とランク分析を行うための関数-abc_analysis",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "ABC分析とランク分析を行うための関数 abc_analysis",
+    "text": "ABC分析とランク分析を行うための関数 abc_analysis\nABC分析のための関数を記述する、基本的には、需要データ demand_df だけあれば良いが、顧客や製品に関連した量を分析に加えたいときには、顧客データ cust_df や 製品データ prod_df も読み込んでおく。\n古典的なABC分析では、3つのカテゴリーに製品や顧客を分類していたが、場合によっては4つに分類したい場合もあるだろう。 ここでは、より一般的にユーザーが与えた任意の数への分類を行う関数を準備する、カテゴリーに含まれる需要量を、ユーザーが与えた閾値をもとにして分類を行う。\n引数:\n\ndf: ABC分析を行うための需要データフレーム．列に集約を行うための列と値を格納した列が必要．\nthreshold: A,B,C の分類を行うための閾値．上位 threshold[0]の要素がAランク，次に上位の threshold[1]がBランク、と順に決めていく。 リストの長さは（アルファベットの数以下の）任意の正数であるが、合計が1以上になるような数値のリストとして与える．\nagg_col: 集約を行う列名を文字列として与える．\nvalue_column: A,B,Cの分類を行うための数値データを保管した列名を文字列として与える．\nabc_name: 分類した結果を入れるための列名を文字列として与える．\nrank_name: 数値データの順位を入れた列名を文字列として与える．\n\n返値: 以下の3つのオブジェクトのタプル：\n\nagg_df: agg_colによって集約したデータをvalue_columnの数値の大きい順に並べたデータフレーム．abcとrankの情報が付加されている．\nnew_df: 元のデータフレームにabc_nameで与えた列にA(=0),B(=1),C(=2)の分類を，rank_nameで与えた列にランク（順位）を入れている．\ncategory: 0,1,2, …をキーとして与えると A,B,C,… ランクに属するデータ名（agg_colの要素）のリストを値として返す辞書．\n\n\nsource\n\nabc_analysis\n\n abc_analysis (df:pandas.core.frame.DataFrame, threshold:list[float],\n               agg_col:str, value_column:str, abc_name:str, rank_name:str)\n\nABC分析のための関数\n\n\n顧客・製品の組に対するABC分析 abc_analysis_all\n顧客・製品ごとに需要予測を行う際に，予測しなくても良い組を予め抜き出しておくことが重要になる．そのため，顧客・製品の組に対してABC分析とランク分析を行う関数を準備しておく．\n引数:\n\ndf: ABC分析を行うための需要データフレーム．列に集約を行うための列と値を格納した列が必要．\nthreshold: A,B,C の分類を行うための閾値．上位 threshold[0]の要素がAランク，次に上位の threshold[1]がBランク、と順に決めていく。\n\n返値: 以下の3つのオブジェクトのタプル：\n\nagg_df: 顧客・製品によって集約したデータをdemandの数値の合計（sum)の大きい順に並べたデータフレーム． abcとrankと需要の標準偏差 (std) の情報が付加されている．\ncategory: 0,1,2, …をキーとして与えると A,B,C,… ランクに属するデータ名（agg_colの要素）のリストを値として返す辞書．\n\n\nsource\n\n\nabc_analysis_all\n\n abc_analysis_all (df:pandas.core.frame.DataFrame, threshold:list[float])"
+  },
+  {
+    "objectID": "01abc.html#abc_analysis_all関数の使用例",
+    "href": "01abc.html#abc_analysis_all関数の使用例",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "abc_analysis(_all)関数の使用例",
+    "text": "abc_analysis(_all)関数の使用例\n以下では、製品と顧客に対してABC分析を行い、得られた3種類のデータフレーム（元のデータフレームに列を追加したもの：new_df、製品データフレームagg_df_prod、顧客データフレーム：agg_df_cust）を示す。\n\n確認用の小規模例\n製品を需要量を元に3つのクラスに、閾値[0.4, 0.5, 0.1]を用いて分類\n顧客を需要量を元に4つのクラスに、閾値[0.4, 0.3, 0.3, 0.1]を用いて分類\n顧客・製品を元に4つのクラスに、閾値[0.4, 0.3, 0.3, 0.1]を用いて分類\n\n#hide - 製品を売り上げを元に4つのクラスに、閾値[0.6, 0.2, 0.1, 0.1]を用いて分類 （これを行うためには、data_generationモジュールのdemand_attribute_compute関数で、Salesの列を生成しておく必要がある。）\n\nagg_df_prod, new_df, category_prod = abc_analysis(\n    demand_df, [0.4, 0.5, 0.1], 'prod', 'demand', \"prod_ABC\", \"prod_rank\")\nagg_df_cust, new_df, category_cust = abc_analysis(\n    demand_df, [0.4, 0.3, 0.3, 0.1], 'cust', 'demand', \"customer_ABC\", \"customer_rank\")\nnew_df.head()\n\n\n\n\n\n\n\n\nindex\ncust\nprod\ndemand\nsales\nabc\nrank\nprod_ABC\nprod_rank\ncustomer_ABC\ncustomer_rank\n\n\ndate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2019-01-01\n0\n札幌市\nA\n10\n10\nB\n3\nB\n3\nC\n24\n\n\n2019-01-01\n1\n札幌市\nB\n10\n10\nB\n4\nB\n4\nC\n24\n\n\n2019-01-01\n2\n札幌市\nC\n3\n3\nC\n7\nC\n7\nC\n24\n\n\n2019-01-01\n3\n札幌市\nD\n0\n0\nC\n9\nC\n9\nC\n24\n\n\n2019-01-01\n4\n札幌市\nE\n37\n37\nA\n0\nA\n0\nC\n24\n\n\n\n\n\n\n\n\nagg_df_prod.head()\n\n\n\n\n\n\n\n\ndemand\nrank\nabc\n\n\nprod\n\n\n\n\n\n\n\nE\n77704\n0\nA\n\n\nJ\n52907\n1\nA\n\n\nH\n39424\n2\nB\n\n\nA\n18026\n3\nB\n\n\nB\n17592\n4\nB\n\n\n\n\n\n\n\n\nagg_df_cust.head()\n\n\n\n\n\n\n\n\ndemand\nrank\nabc\n\n\ncust\n\n\n\n\n\n\n\n佐賀市\n55317\n0\nA\n\n\n静岡市\n27902\n1\nA\n\n\n岡山市\n22976\n2\nA\n\n\n那覇市\n12990\n3\nB\n\n\n京都市\n11593\n4\nB\n\n\n\n\n\n\n\n\nagg_df,category = abc_analysis_all(demand_df, threshold=[0.4, 0.3, 0.3, 0.1])\nagg_df.head()\n\n\n\n\n\n\n\n\n\nsum\nstd\nrank\nabc\n\n\ncust\nprod\n\n\n\n\n\n\n\n\n佐賀市\nE\n17587\n471.906473\n0\nA\n\n\nJ\n11990\n322.062341\n1\nA\n\n\nH\n8939\n239.820182\n2\nA\n\n\n静岡市\nE\n8877\n238.403449\n3\nA\n\n\n岡山市\nE\n7310\n196.151534\n4\nA\n\n\n\n\n\n\n\n\n元のデータフレームにabcとrankとdemandを追加する関数 add_abc\n引数： - df: 製品や顧客のデータフレーム；これにABC分析の結果を追加する． - agg_df: 集約した需要，ABC分類，ランクを保管したデータフレーム；インデックスは製品(prod)もしくは顧客 (cust) - col_name: 追加したいデータの列名；製品の場合にはprod（既定値），顧客の場合にはcust\n返値： - df: ランク，ABC分類，集約した需要量を追加したデータフレーム\n\nsource\n\n\nadd_abc\n\n add_abc (df:pandas.core.frame.DataFrame,\n          agg_df:pandas.core.frame.DataFrame, col_name:str='prod')\n\n\n\nadd_abc関数の使用例\n\nnew_prod_df = add_abc(prod_df, agg_df_prod)\nnew_prod_df.head()\n\n\n\n\n\n\n\n\nname\nplnt_value\nfixed_cost\ndemand\nrank\nabc\n\n\n\n\n0\nA\n1\n14\n18026\n3\nB\n\n\n1\nB\n1\n14\n17592\n4\nB\n\n\n2\nC\n1\n19\n6682\n7\nC\n\n\n3\nD\n1\n17\n813\n9\nC\n\n\n4\nE\n1\n18\n77704\n0\nA"
+  },
+  {
+    "objectID": "01abc.html#abc別に色分けした需要のtreemapを生成する関数",
+    "href": "01abc.html#abc別に色分けした需要のtreemapを生成する関数",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "ABC別に色分けした需要のtreemapを生成する関数",
+    "text": "ABC別に色分けした需要のtreemapを生成する関数\n引数： - 需要データフレーム（需要 demand，売り上げ sales，customer_ABC, prod_ABCの列を含む； ABC分析で得られたnew_df）\n返値： - Plotlyのtreemapオブジェクト\n\nsource\n\ndemand_tree_map_with_abc\n\n demand_tree_map_with_abc (demand_df:pandas.core.frame.DataFrame)\n\nABC別に色分けした需要のtreemapを生成する関数\n\n\ndemand_tree_map_with_abc関数の使用例\n\nfig = demand_tree_map_with_abc(new_df)\nplotly.offline.plot(fig);\n\n\n\n\n\n\n\n\n需要データフレームからABC分析の図とデータフレームを生成する関数 generate_figures_for_abc_analysis\n顧客と製品の両方に対するABC分析を同時に行い、結果の図とデータフレームを同時に得るには、この関数を用いる。\n引数：\n\ndemand_df : 需要データフレーム\nvalue_name: 分析をするデータが入っている列名（既定値は”demand”）\ncumsum : 図を累積値で描画するときには True\ncust_thres : 顧客のABC分析するときの閾値を文字列で表したもの\nprod_thres : 製品のABC分析するときの閾値を文字列で表したもの\n\n返値：\n\nfig_prod : 製品のABC分析のPlotly図オブジェクト\nfig_cust : 顧客のABC分析のPlotly図オブジェクト\nagg_df_prod : 製品をインデックスとしたABC分析のデータフレーム\nagg_df_cust : 顧客をインデックスとしたABC分析のデータフレーム\nnew_df : 顧客と製品のABCとランクを加えた新しい需要データフレーム\n\n\nsource\n\n\ngenerate_figures_for_abc_analysis\n\n generate_figures_for_abc_analysis (demand_df:pandas.core.frame.DataFrame,\n                                    value_name:str='demand',\n                                    cumsum:bool=True, cust_thres:str='0.7,\n                                    0.2, 0.1', prod_thres:str='0.7, 0.2,\n                                    0.1')\n\n\n\ngenerate_figures_for_abc_analysis関数の使用例\n\nfig_prod, fig_cust, agg_df_prod, agg_df_cust, new_df = generate_figures_for_abc_analysis(\ndemand_df, value_name=\"sales\", cumsum = False, cust_thres=\"0.7, 0.2, 0.1\", prod_thres=\"0.7, 0.2, 0.1\")\nplotly.offline.plot(fig_cust);"
+  },
+  {
+    "objectID": "01abc.html#ランク分析のための関数-rank_analysis-と-rank_analysis_all_periods",
+    "href": "01abc.html#ランク分析のための関数-rank_analysis-と-rank_analysis_all_periods",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "ランク分析のための関数 rank_analysis と rank_analysis_all_periods",
+    "text": "ランク分析のための関数 rank_analysis と rank_analysis_all_periods\n全ての期に対するランク分析を行う関数 rank_analysis と、期ごと（集約する単位は文字列で与える）のランク分析を行う関数 rank_analysis_all_periodsを記述する。\n引数:\n\ndf: ランク分析を行う対象の需要データフレーム．列に集約を行うための列と，値を格納した列が必要．\nagg_col: 集約を行う列名を文字列として与える．\nvalue_column: ランクを計算するための数値データを保管した列名を文字列として与える．\nagg_period （rank_analysis_all_periodsの場合のみ） : 集約を行う期間を “1m”（月次）のような文字列で与える．\n\n返値:\n\n名前を入れるとランク（rank_analysisの場合）もしくランクの期別リスト（rank_analysis_all_periodsの場合）を返す辞書\n\n\nsource\n\nrank_analysis\n\n rank_analysis (df:pandas.core.frame.DataFrame, agg_col:str,\n                value_column:str)\n\n全期間分のランク分析のための関数\n\nsource\n\n\nrank_analysis_all_periods\n\n rank_analysis_all_periods (df:pandas.core.frame.DataFrame, agg_col:str,\n                            value_column:str, agg_period:str)\n\n期別のランク分析のための関数\n\n\nランク分析の関数の使用例\n全期間分の顧客需要のランク分析と、３ヶ月を１期とした各期間に対する製品のランク分析。\n\ndic = rank_analysis(demand_df, 'cust', 'demand') #全ての期間に対する顧客需要量のランク分析\ndic.popitem()\n\n('盛岡市', 47)\n\n\n\ndic = rank_analysis_all_periods(demand_df, 'prod', 'demand', \"1d\") \ndic.popitem()\n\n('F', [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7])\n\n\n\n\nランク分析の可視化関数 show_rank_analysis\nランクの時系列的な変化を表す図を生成するための関数。\n引数:\n\ndf: ランク分析を行う対象の需要データフレーム．列に集約を行うための列と，値を格納した列が必要．\nvalue_name: 分析をするデータが入っている列名（既定値は”demand”）\nagg_period: 集約を行う期間を “1m”（月次）のような文字列で与える．\ntop_rank: 上位 top_rank 個のものだけを表示する\n\n返値:\n\nPlotlyの図オブジェクト\n\n\nsource\n\n\nshow_rank_analysis\n\n show_rank_analysis (demand_df:pandas.core.frame.DataFrame,\n                     value_name:str='demand', agg_period:str='1m',\n                     top_rank:int=1)\n\nランク分析の可視化関数\n\n\nshow_rank_analysis関数の使用例\n\nfig = show_rank_analysis(demand_df, value_name=\"sales\", agg_period =\"1d\", top_rank = 10)\nplotly.offline.plot(fig);"
+  },
+  {
+    "objectID": "01abc.html#リスク共同管理分析-risk_pooling_analysis",
+    "href": "01abc.html#リスク共同管理分析-risk_pooling_analysis",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "リスク共同管理分析 risk_pooling_analysis",
+    "text": "リスク共同管理分析 risk_pooling_analysis\n在庫をサプライ・チェインの上流（供給側）でもつか、下流（需要側）でもつかは、複数の需要地点（顧客）における需要の相関で決まる。 一般には、上流で在庫を共有することによって在庫の削減ができる。これをリスク共同管理 (risk pooling) とよぶ。\nここでは、製品ごとに、顧客の需要の標準偏差とリスク共同管理した場合の標準偏差の差を計算する。 また、それを需要の総量で割った比率（削減率）も計算する。 これは、標準偏差を平均値で割ることによる無次元の指標（変動係数： coefficient of variation: CV)に相当するものである。\nこの値が大きい製品ほど、リスク共同管理の効果が大きいので、サプライ・チェインの上流で在庫を保持した方が良いことになり、 逆に小さい製品ほど、下流で在庫を保持した方が良いことになる。\n引数： - demand_df: 需要のデータフレーム - agg_period: 標準偏差を計算する際に用いる需要の集約を行う期（規定値は週）\n返値： - inv_reduction_df : 標準偏差とその差と削減率を製品ごとに計算したデータフレーム； Rank列は製品の順位\n\nsource\n\nrisk_pooling_analysis\n\n risk_pooling_analysis (demand_df:pandas.core.frame.DataFrame,\n                        agg_period='1w')\n\nリスク共同管理の効果を見るための関数\n在庫を顧客側においた場合と、倉庫側においた場合の差を、標準偏差を計算することによって推定する。"
+  },
+  {
+    "objectID": "01abc.html#risk_pooling_analysis関数の使用例",
+    "href": "01abc.html#risk_pooling_analysis関数の使用例",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "risk_pooling_analysis関数の使用例",
+    "text": "risk_pooling_analysis関数の使用例\n１週間を単位とした標準偏差をもとに、在庫を倉庫に置いた場合と工場に置いた場合の差を計算し、それを需要の総量で除した削減率(ReductionRatioの列）を計算する。 Plotlyによる可視化では、削減率の大きいものから棒グラフで表示し、需要の大きさのランクで色分けをする。\n\ninv_reduction_df = risk_pooling_analysis(demand_df, agg_period=\"1w\")\ninv_reduction_df.head()\n\n\n\n\n\n\n\n\nrank\nprod\nagg_std\nsum_std\nreduction\nreduction_ratio\n\n\n\n\n0\n10\nD\n20.506097\n61.518290\n41.012193\n0.050446\n\n\n1\n9\nI\n101.823376\n142.835570\n41.012193\n0.016353\n\n\n2\n8\nC\n302.641702\n332.340187\n29.698485\n0.004445\n\n\n3\n4\nA\n749.533188\n782.060100\n32.526912\n0.001804\n\n\n4\n7\nF\n513.359523\n524.673232\n11.313708\n0.000956\n\n\n\n\n\n\n\n\n在庫削減量の可視化関数 show_inventory_reduction\n\nsource\n\n\nshow_inventory_reduction\n\n show_inventory_reduction (inv_reduction_df:pandas.core.frame.DataFrame)\n\n在庫削減量の可視化関数\n\nfig = show_inventory_reduction(inv_reduction_df)\nplotly.offline.plot(fig);\n\n\n\n\n\n\n\n\n需要の製品ごとの平均と変動係数の可視化関数 show_mean_cv\n需要を製品ごとに集約し，横軸に平均，縦軸に変動係数(\\(CV=\\sigma/\\mu\\))の対数をとった散布図を生成する．\n平均が大きく，変動係数が小さい製品は安定しているので倉庫（サプライ・チェインの下流）で保管し，平均が小さく変動係数が大きい製品は，工場（サプライ・チェインの上流）で 保管し，適宜顧客側に流す戦略が望ましい．\n引数： - demand: 需要データフレーム - show_name: Trueのとき製品名も描画する．\n返値： - fig: Plotlyの図オブジェクト\n\nsource\n\n\nshow_mean_cv\n\n show_mean_cv (demand_df:pandas.core.frame.DataFrame, show_name:bool=True)\n\n\nshow_mean_cv関数の使用例\n\nfig = show_mean_cv(demand_df, show_name=True)\nplotly.offline.plot(fig);"
+  },
+  {
+    "objectID": "01abc.html#安全在庫ロットサイズ目標在庫基在庫レベルの設定関数-inventory_analysis",
+    "href": "01abc.html#安全在庫ロットサイズ目標在庫基在庫レベルの設定関数-inventory_analysis",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "安全在庫、ロットサイズ、目標在庫（基在庫レベル）の設定関数 inventory_analysis",
+    "text": "安全在庫、ロットサイズ、目標在庫（基在庫レベル）の設定関数 inventory_analysis\n全ての需要が1つの工場で生産していると仮定したとき、その生産ロットサイズや安全在庫量は、古典的な経済発注量モデルと新聞売り子モデルで計算できる。\n\n安全在庫量: 安全在庫係数 \\(z\\), リード時間 \\(L\\)， 需要の標準偏差 \\(\\sigma\\) としたとき \\(z\\sqrt{LT}\\sigma\\)\n経済発注量（生産ロットサイズ）: 生産固定費用 \\(FC\\)、需要の平均値 \\(d\\)、在庫費用 \\(h\\) としたとき \\(\\sqrt{2 FCd/h}\\)\n保管費率（無次元）： \\(r\\) は以下の量の和とする。\n\n利子率（投資額利率）\n保険料率: 製品の種類および企業の方針によっても異なる．\n消耗費率および陳腐化率: 製品の腐敗，破損，目減りなどを考慮して計算\n税率: 在庫に課せられる法的な税率（日本では0)\n\n在庫費用： \\(h\\) は、保管費率 \\(r\\) に製品の価値（製品データのplnt_value列)を乗じたものを週あたりに換算したもの\n目標在庫量 \\(=\\) 安全在庫量 \\(+\\) ロットサイズ\n初期在庫量 \\(=\\) 安全在庫量と目標在庫量の平均\n\n引数：\n\nprod_df: 製品データフレーム\ndemand_df: 多期間の製品別需要データフレーム\ninv_reduction_df : 標準偏差とその差と削減率を製品ごとに計算したデータフレーム\nz: 安全在庫係数　\nLT: リード時間\nr: 年間保管費率\nnum_days: 標準偏差を計算する際の日数（既定値は \\(7\\)）\n\n返値： 以下の列情報を加えた製品データフレーム prod_df\n\naverage_demand: num_days間の平均需要\nstandard_deviation： 需要の標準偏差\ninv_cost： 在庫費用 $h = r $ plnt_value を1週間に換算したもの\nsafety_inventory: 安全在庫量\ntarget_inventory: 目標在庫量（基在庫レベル）；　 \\(d LT + z\\sqrt{LT}\\sigma\\)\ninitial_inventory: 初期在庫量\n\n\nsource\n\ninventory_analysis\n\n inventory_analysis (prod_df:pandas.core.frame.DataFrame,\n                     demand_df:pandas.core.frame.DataFrame,\n                     inv_reduction_df:pandas.core.frame.DataFrame,\n                     z:float=1.65, LT:int=1, r:float=0.3, num_days:int=7)\n\n工場における安全在庫量の計算\n工場を１箇所に集約したと仮定する。複数工場の場合には、顧客と工場の紐付け情報が必要になる。\n\n\ninventory_analysis関数の使用例\n１週間を基本単位として、在庫量削減データフレームを計算し、それをもとに工場での在庫量を求める。\n\nprod_df = pd.read_csv(folder+\"Prod.csv\",index_col=0)\n\ninv_reduction_df = risk_pooling_analysis(demand_df, agg_period=\"1w\")\nprod_df2 = inventory_analysis(prod_df, demand_df, inv_reduction_df, z = 1.65, LT = 1, r = 0.3, num_days=7)\nprod_df2.set_index(\"index\", inplace=True)\nprod_df2.to_csv(folder + \"Prod_with_inventory.csv\")\nprod_df2.head()\n\n\n\n\n\n\n\n\nname\nweight\nvolume\ncust_value\ndc_value\nplnt_value\nfixed_cost\naverage_demand\nstandard_deviation\ninv_cost\nlot_size\nsafety_inventory\ntarget_inventory\ninitial_inventory\n\n\nindex\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n0\nA\n2\n0\n7\n1\n1\n14\n11471.090909\n749.533188\n0.005753\n7471.678242\n1236.729760\n8708.408003\n4972.0\n\n\n1\nB\n5\n0\n5\n1\n1\n14\n11194.909091\n760.846897\n0.005753\n7381.184926\n1255.397379\n8636.582305\n4945.0\n\n\n2\nC\n1\n0\n5\n1\n1\n19\n4252.181818\n302.641702\n0.005753\n5299.495116\n499.358809\n5798.853925\n3149.0\n\n\n3\nD\n3\n0\n5\n1\n1\n17\n517.363636\n20.506097\n0.005753\n1748.534451\n33.835059\n1782.369511\n908.0\n\n\n4\nE\n1\n0\n10\n1\n1\n18\n49448.000000\n3426.639462\n0.005753\n17589.860716\n5653.955112\n23243.815827\n14448.0"
+  },
+  {
+    "objectID": "01abc.html#生産在庫シミュレーション-inventory_simulation",
+    "href": "01abc.html#生産在庫シミュレーション-inventory_simulation",
+    "title": "サプライ・チェイン基本分析システム SCBAS",
+    "section": "生産・在庫シミュレーション inventory_simulation",
+    "text": "生産・在庫シミュレーション inventory_simulation\n上で生成したデータを用いて、シミュレーションを行う。生産は、安全在庫量を下回ったときに行われ、目標在庫量になるように生産量を決める。\n引数：\n\nprod_df: 製品データ\ndemand_df: 需要データ\n\n返値：\n\nキーを製品名、値を、需要 demand、在庫 inventory、生産量 production を列とした時系列データフレームとした辞書\n\n\nsource\n\ninventory_simulation\n\n inventory_simulation (prod_df:pandas.core.frame.DataFrame,\n                       demand_df:pandas.core.frame.DataFrame)\n\n(Q,R)方策のシミュレーション\n\n\ninventory_simulation関数の使用例\n製品 A に対する需要、在庫、生産量を表すデータフレームを表示する。\n\nproduction_df = inventory_simulation(prod_df, demand_df)\nproduction_df[prod_df.name[0]].head()\n\n\n\n\n\n\n\n\ndemand\ninventory\nproduction\n\n\n\n\n2019-01-01\n1397\n3575.000000\n0.000000\n\n\n2019-01-02\n1684\n1891.000000\n0.000000\n\n\n2019-01-03\n1796\n95.000000\n8613.408003\n\n\n2019-01-04\n1249\n7459.408003\n0.000000\n\n\n2019-01-05\n2083\n5376.408003\n0.000000\n\n\n\n\n\n\n\n\n\n生産、在庫、需要の可視化関数 show_prod_inv_demand\n引数：\n\nprod_name: 製品名\nproduction_df: 累積需要量、在庫量、生産量の列をもつデータフレーム\nscale: 時間の集約を表す文字列。たとえば1日ごとに表示する場合には “1d” とする。\n\n返値：\n\nplotlyの図\n\n\nsource\n\n\nshow_prod_inv_demand\n\n show_prod_inv_demand (prod_name:str,\n                       production_df:pandas.core.frame.DataFrame,\n                       scale:str='1d')\n\n生産、在庫、需要の可視化関数\n\n\nshow_prod_inv_demand関数の使用例\n\nfig = show_prod_inv_demand(prod_df.name[3], production_df, scale=\"1d\")\nplotly.offline.plot(fig);"
+  },
+  {
+    "objectID": "scml2.html",
+    "href": "scml2.html",
+    "title": "SCML2",
+    "section": "",
+    "text": "source\n\n\n\n PicklableBaseModel ()\n\nPickleを付加したベースモデル"
+  },
+  {
+    "objectID": "scml2.html#picklable-base-model",
+    "href": "scml2.html#picklable-base-model",
+    "title": "SCML2",
+    "section": "",
+    "text": "source\n\n\n\n PicklableBaseModel ()\n\nPickleを付加したベースモデル"
+  },
+  {
+    "objectID": "scml2.html#period",
+    "href": "scml2.html#period",
+    "title": "SCML2",
+    "section": "Period",
+    "text": "Period\n\nsource\n\nPeriod\n\n Period (name:str,\n         start:Union[datetime.datetime,datetime.date,datetime.time,NoneTyp\n         e]=None, finish:Union[datetime.datetime,datetime.date,datetime.ti\n         me,NoneType]=None)\n\nPickleを付加したベースモデル\n\nperiod1 = Period(name=\"Period1\", \n                 start='2023-04-23T10:20:30.400+02:30', \n                 finish='2023-04-28T10:20:30.400+02:30')\nperiod1\n\nPeriod(name='Period1', start=datetime.datetime(2023, 4, 23, 10, 20, 30, 400000, tzinfo=datetime.timezone(datetime.timedelta(seconds=9000))), finish=datetime.datetime(2023, 4, 28, 10, 20, 30, 400000, tzinfo=datetime.timezone(datetime.timedelta(seconds=9000))))"
+  },
+  {
+    "objectID": "scml2.html#resource",
+    "href": "scml2.html#resource",
+    "title": "SCML2",
+    "section": "Resource",
+    "text": "Resource\n\nsource\n\nResource\n\n Resource (name:str, capacity:Union[int,Dict,NoneType]=None)\n\nPickleを付加したベースモデル\n\nres1 = Resource(name=\"Res1\")"
+  },
+  {
+    "objectID": "scml2.html#product",
+    "href": "scml2.html#product",
+    "title": "SCML2",
+    "section": "Product",
+    "text": "Product\n\nsource\n\nProduct\n\n Product (name:str, weight:Optional[float]=None,\n          volume:Optional[float]=None,\n          value:Optional[Dict[str,float]]=None,\n          safety_inventory:Optional[float]=None,\n          initial_inventory:Optional[float]=None,\n          target_inventory:Optional[float]=None)\n\nPickleを付加したベースモデル\n\nprod1 = Product(name = \"Prod1\")\nprod1\n\nProduct(name='Prod1', weight=None, volume=None, value=None, safety_inventory=None, initial_inventory=None, target_inventory=None)\n\n\n\nprod1.addValue(\"Node1\", 100.)\nprod1\n\nProduct(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None)\n\n\n\nprod1.to_pickle(\"sample1\")\nwith open(f\"sample1.pkl\",\"rb\") as f:\n    prod2 = pickle.load(f)\nprod2\n\nProduct(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None)"
+  },
+  {
+    "objectID": "scml2.html#mode",
+    "href": "scml2.html#mode",
+    "title": "SCML2",
+    "section": "Mode",
+    "text": "Mode\n\nsource\n\nMode\n\n Mode (name:str, components:Optional[Dict[str,float]]=None,\n       byproducts:Optional[Dict[str,float]]=None,\n       requirement:Optional[Dict[Tuple,Dict]]=None,\n       duration:Optional[int]=None, breakable:Optional[Dict]=None,\n       parallel:Optional[Dict]=None, state:Optional[Dict]=None)\n\nPickleを付加したベースモデル\n\nmode1 = Mode(name = \"Mode1\")\nmode2 = Mode(name = \"Mode2\")\nmode1.addResource(res1,1)\nmode1\n\nMode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None)"
+  },
+  {
+    "objectID": "scml2.html#activity",
+    "href": "scml2.html#activity",
+    "title": "SCML2",
+    "section": "Activity",
+    "text": "Activity\n\nsource\n\nActivity\n\n Activity (name:str, atype:Optional[str]=None,\n           modes:Optional[Dict[str,__main__.Mode]]=None,\n           product:__main__.Product, duedate:Union[str,int,NoneType]=None,\n           backward:Optional[bool]=None, weight:Optional[int]=None,\n           autoselect:Optional[bool]=None)\n\nPickleを付加したベースモデル\n\nact1 = Activity(name=\"Act1\", product= prod1)\nact1.addMode(mode1)\nact1.addModes([mode1,mode2])\nact1\n\nActivity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)"
+  },
+  {
+    "objectID": "scml2.html#node",
+    "href": "scml2.html#node",
+    "title": "SCML2",
+    "section": "Node",
+    "text": "Node\n\nsource\n\nNode\n\n Node (id:Optional[int]=None, name:str, location:Union[NoneType,__main__.J\n       sonWrapperValue,Tuple[float,float]]=None,\n       activities:Optional[Dict[str,__main__.Activity]]=None)\n\nPickleを付加したベースモデル\n\nnode1 = Node(name=\"Node1\")\nnode2 = Node(name=\"Node2\")\nnode1.addActivity(act1)\nnode1\n\nNode(id=None, name='Node1', location=None, activities={'Act1': Activity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)})"
+  },
+  {
+    "objectID": "scml2.html#arc",
+    "href": "scml2.html#arc",
+    "title": "SCML2",
+    "section": "Arc",
+    "text": "Arc\n\nsource\n\nArc\n\n Arc (source:__main__.Node, sink:__main__.Node,\n      activitys:Optional[Dict[str,__main__.Activity]]=None)\n\nPickleを付加したベースモデル\n\narc1 = Arc(source=node1,sink=node2)\narc1.addActivity(act1)\narc1\n\nArc(source=Node(id=None, name='Node1', location=None, activity_dict={'Act1': Activity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)}), sink=Node(id=None, name='Node2', location=None, activity_dict=None), activitys={'Act1': Activity(name='Act1', atype=None, modes={'Mode1': Mode(name='Mode1', components=None, byproducts=None, requirement={('Res1', None): 1}, duration=None, breakable=None, parallel=None, state=None), 'Mode2': Mode(name='Mode2', components=None, byproducts=None, requirement=None, duration=None, breakable=None, parallel=None, state=None)}, product=Product(name='Prod1', weight=None, volume=None, value={'Node1': 100.0}, safety_inventory=None, initial_inventory=None, target_inventory=None), duedate=None, backward=None, weight=None, autoselect=None)})"
+  },
+  {
+    "objectID": "scml2.html#model",
+    "href": "scml2.html#model",
+    "title": "SCML2",
+    "section": "Model",
+    "text": "Model\n\nsource\n\nModel\n\n Model (name:str='',\n        activities:Optional[Dict[str,__main__.Activity]]=None,\n        resources:Optional[Dict[str,__main__.Resource]]=None,\n        products:Optional[Dict[str,__main__.Product]]=None,\n        periods:Optional[Dict[str,__main__.Period]]=None,\n        nodes:Optional[Dict[str,__main__.Node]]=None,\n        arcs:Optional[Dict[str,__main__.Arc]]=None)\n\nPickleを付加したベースモデル\n\nmodel1 = Model(name=\"model1\")\nmodel1\n\nModel(name='model1', activityies=None, resources=None, products=None, periods=None, nodes=None, arcs=None)"
+  }
+]

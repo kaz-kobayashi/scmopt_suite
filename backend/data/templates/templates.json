@@ -1,0 +1,2343 @@
+{
+  "predefined_小規模製造業テンプレート": {
+    "id": "predefined_小規模製造業テンプレート",
+    "name": "小規模製造業テンプレート",
+    "description": "3台の機械で5つのジョブを処理する基本的な製造スケジュール",
+    "category": "manufacturing",
+    "problem_template": {
+      "problem_type": "job_shop",
+      "jobs": [
+        {
+          "id": "J1",
+          "name": "ジョブ1",
+          "operations": [
+            {
+              "id": "J1_O1",
+              "job_id": "J1",
+              "machine_id": "M2",
+              "duration": 23,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O2",
+              "job_id": "J1",
+              "machine_id": "M2",
+              "duration": 29,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O3",
+              "job_id": "J1",
+              "machine_id": "M1",
+              "duration": 30,
+              "position_in_job": 2,
+              "setup_time": 1,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O4",
+              "job_id": "J1",
+              "machine_id": "M2",
+              "duration": 16,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 5,
+          "weight": 1.587989261910114,
+          "release_time": 6,
+          "due_date": 252,
+          "deadline": null
+        },
+        {
+          "id": "J2",
+          "name": "ジョブ2",
+          "operations": [
+            {
+              "id": "J2_O1",
+              "job_id": "J2",
+              "machine_id": "M2",
+              "duration": 24,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O2",
+              "job_id": "J2",
+              "machine_id": "M1",
+              "duration": 25,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O3",
+              "job_id": "J2",
+              "machine_id": "M1",
+              "duration": 11,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O4",
+              "job_id": "J2",
+              "machine_id": "M3",
+              "duration": 35,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 0.6168245918241875,
+          "release_time": 23,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J3",
+          "name": "ジョブ3",
+          "operations": [
+            {
+              "id": "J3_O1",
+              "job_id": "J3",
+              "machine_id": "M2",
+              "duration": 18,
+              "position_in_job": 0,
+              "setup_time": 5,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O2",
+              "job_id": "J3",
+              "machine_id": "M1",
+              "duration": 53,
+              "position_in_job": 1,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O3",
+              "job_id": "J3",
+              "machine_id": "M3",
+              "duration": 39,
+              "position_in_job": 2,
+              "setup_time": 2,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O4",
+              "job_id": "J3",
+              "machine_id": "M1",
+              "duration": 58,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 1,
+          "weight": 0.964009628929898,
+          "release_time": 25,
+          "due_date": 338,
+          "deadline": null
+        },
+        {
+          "id": "J4",
+          "name": "ジョブ4",
+          "operations": [
+            {
+              "id": "J4_O1",
+              "job_id": "J4",
+              "machine_id": "M3",
+              "duration": 32,
+              "position_in_job": 0,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O2",
+              "job_id": "J4",
+              "machine_id": "M2",
+              "duration": 42,
+              "position_in_job": 1,
+              "setup_time": 2,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O3",
+              "job_id": "J4",
+              "machine_id": "M2",
+              "duration": 17,
+              "position_in_job": 2,
+              "setup_time": 9,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O4",
+              "job_id": "J4",
+              "machine_id": "M3",
+              "duration": 49,
+              "position_in_job": 3,
+              "setup_time": 4,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 0.6057280375520134,
+          "release_time": 22,
+          "due_date": 331,
+          "deadline": null
+        },
+        {
+          "id": "J5",
+          "name": "ジョブ5",
+          "operations": [
+            {
+              "id": "J5_O1",
+              "job_id": "J5",
+              "machine_id": "M2",
+              "duration": 46,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O2",
+              "job_id": "J5",
+              "machine_id": "M2",
+              "duration": 44,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O3",
+              "job_id": "J5",
+              "machine_id": "M2",
+              "duration": 39,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O4",
+              "job_id": "J5",
+              "machine_id": "M3",
+              "duration": 34,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 0.7747603964617276,
+          "release_time": 20,
+          "due_date": 325,
+          "deadline": null
+        }
+      ],
+      "machines": [
+        {
+          "id": "M1",
+          "name": "マシン1",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M2",
+          "name": "マシン2",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M3",
+          "name": "マシン3",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        }
+      ],
+      "resources": null,
+      "optimization_objective": "makespan",
+      "time_horizon": 500,
+      "allow_preemption": false,
+      "transportation_times": null,
+      "setup_times_included": true,
+      "max_solve_time_seconds": 300,
+      "optimality_gap_tolerance": 0.01
+    },
+    "default_solver_config": {
+      "solver_type": "pyjobshop",
+      "time_limit_seconds": 30,
+      "optimization_objective": "minimize_makespan"
+    },
+    "default_analysis_config": {
+      "include_critical_path": true,
+      "include_bottleneck_analysis": true,
+      "include_improvement_suggestions": true,
+      "include_gantt_chart": true
+    },
+    "tags": [
+      "simple",
+      "manufacturing"
+    ],
+    "created_at": "2025-09-12 19:36:15.535963",
+    "updated_at": "2025-09-12 19:36:15.535966",
+    "usage_count": 0,
+    "is_public": true,
+    "created_by": "system"
+  },
+  "predefined_中規模プロジェクトテンプレート": {
+    "id": "predefined_中規模プロジェクトテンプレート",
+    "name": "中規模プロジェクトテンプレート",
+    "description": "5台の機械で10のジョブを処理するプロジェクト管理向け",
+    "category": "project",
+    "problem_template": {
+      "problem_type": "job_shop",
+      "jobs": [
+        {
+          "id": "J1",
+          "name": "ジョブ1",
+          "operations": [
+            {
+              "id": "J1_O1",
+              "job_id": "J1",
+              "machine_id": "M1",
+              "duration": 17,
+              "position_in_job": 0,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O2",
+              "job_id": "J1",
+              "machine_id": "M5",
+              "duration": 30,
+              "position_in_job": 1,
+              "setup_time": 2,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O3",
+              "job_id": "J1",
+              "machine_id": "M5",
+              "duration": 34,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O4",
+              "job_id": "J1",
+              "machine_id": "M3",
+              "duration": 32,
+              "position_in_job": 3,
+              "setup_time": 9,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 0.7533689488414074,
+          "release_time": 15,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J2",
+          "name": "ジョブ2",
+          "operations": [
+            {
+              "id": "J2_O1",
+              "job_id": "J2",
+              "machine_id": "M4",
+              "duration": 23,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O2",
+              "job_id": "J2",
+              "machine_id": "M5",
+              "duration": 60,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O3",
+              "job_id": "J2",
+              "machine_id": "M5",
+              "duration": 33,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 1,
+          "weight": 1.2280691904702488,
+          "release_time": 11,
+          "due_date": 237,
+          "deadline": null
+        },
+        {
+          "id": "J3",
+          "name": "ジョブ3",
+          "operations": [
+            {
+              "id": "J3_O1",
+              "job_id": "J3",
+              "machine_id": "M3",
+              "duration": 23,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O2",
+              "job_id": "J3",
+              "machine_id": "M3",
+              "duration": 39,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O3",
+              "job_id": "J3",
+              "machine_id": "M1",
+              "duration": 44,
+              "position_in_job": 2,
+              "setup_time": 3,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O4",
+              "job_id": "J3",
+              "machine_id": "M1",
+              "duration": 36,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 1,
+          "weight": 0.6720303850501868,
+          "release_time": 28,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J4",
+          "name": "ジョブ4",
+          "operations": [
+            {
+              "id": "J4_O1",
+              "job_id": "J4",
+              "machine_id": "M4",
+              "duration": 19,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O2",
+              "job_id": "J4",
+              "machine_id": "M5",
+              "duration": 22,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O3",
+              "job_id": "J4",
+              "machine_id": "M5",
+              "duration": 20,
+              "position_in_job": 2,
+              "setup_time": 4,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O4",
+              "job_id": "J4",
+              "machine_id": "M4",
+              "duration": 54,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 0.7175481833017161,
+          "release_time": 8,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J5",
+          "name": "ジョブ5",
+          "operations": [
+            {
+              "id": "J5_O1",
+              "job_id": "J5",
+              "machine_id": "M5",
+              "duration": 39,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O2",
+              "job_id": "J5",
+              "machine_id": "M2",
+              "duration": 34,
+              "position_in_job": 1,
+              "setup_time": 9,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O3",
+              "job_id": "J5",
+              "machine_id": "M1",
+              "duration": 50,
+              "position_in_job": 2,
+              "setup_time": 2,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O4",
+              "job_id": "J5",
+              "machine_id": "M5",
+              "duration": 36,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 1.0299410141356977,
+          "release_time": 28,
+          "due_date": 308,
+          "deadline": null
+        },
+        {
+          "id": "J6",
+          "name": "ジョブ6",
+          "operations": [
+            {
+              "id": "J6_O1",
+              "job_id": "J6",
+              "machine_id": "M3",
+              "duration": 14,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O2",
+              "job_id": "J6",
+              "machine_id": "M5",
+              "duration": 27,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O3",
+              "job_id": "J6",
+              "machine_id": "M5",
+              "duration": 40,
+              "position_in_job": 2,
+              "setup_time": 9,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O4",
+              "job_id": "J6",
+              "machine_id": "M2",
+              "duration": 46,
+              "position_in_job": 3,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O5",
+              "job_id": "J6",
+              "machine_id": "M5",
+              "duration": 42,
+              "position_in_job": 4,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 1,
+          "weight": 1.1799349390572764,
+          "release_time": 20,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J7",
+          "name": "ジョブ7",
+          "operations": [
+            {
+              "id": "J7_O1",
+              "job_id": "J7",
+              "machine_id": "M5",
+              "duration": 22,
+              "position_in_job": 0,
+              "setup_time": 1,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J7_O2",
+              "job_id": "J7",
+              "machine_id": "M4",
+              "duration": 19,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J7_O3",
+              "job_id": "J7",
+              "machine_id": "M2",
+              "duration": 31,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J7_O4",
+              "job_id": "J7",
+              "machine_id": "M4",
+              "duration": 43,
+              "position_in_job": 3,
+              "setup_time": 4,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 2,
+          "weight": 0.7556393756520607,
+          "release_time": 24,
+          "due_date": 240,
+          "deadline": null
+        },
+        {
+          "id": "J8",
+          "name": "ジョブ8",
+          "operations": [
+            {
+              "id": "J8_O1",
+              "job_id": "J8",
+              "machine_id": "M1",
+              "duration": 18,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O2",
+              "job_id": "J8",
+              "machine_id": "M3",
+              "duration": 27,
+              "position_in_job": 1,
+              "setup_time": 5,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O3",
+              "job_id": "J8",
+              "machine_id": "M4",
+              "duration": 13,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O4",
+              "job_id": "J8",
+              "machine_id": "M3",
+              "duration": 49,
+              "position_in_job": 3,
+              "setup_time": 1,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O5",
+              "job_id": "J8",
+              "machine_id": "M1",
+              "duration": 32,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 0.9611280285378365,
+          "release_time": 8,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J9",
+          "name": "ジョブ9",
+          "operations": [
+            {
+              "id": "J9_O1",
+              "job_id": "J9",
+              "machine_id": "M1",
+              "duration": 45,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J9_O2",
+              "job_id": "J9",
+              "machine_id": "M2",
+              "duration": 55,
+              "position_in_job": 1,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J9_O3",
+              "job_id": "J9",
+              "machine_id": "M3",
+              "duration": 47,
+              "position_in_job": 2,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 5,
+          "weight": 1.2555465816608278,
+          "release_time": 25,
+          "due_date": 345,
+          "deadline": null
+        },
+        {
+          "id": "J10",
+          "name": "ジョブ10",
+          "operations": [
+            {
+              "id": "J10_O1",
+              "job_id": "J10",
+              "machine_id": "M3",
+              "duration": 60,
+              "position_in_job": 0,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O2",
+              "job_id": "J10",
+              "machine_id": "M1",
+              "duration": 34,
+              "position_in_job": 1,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O3",
+              "job_id": "J10",
+              "machine_id": "M2",
+              "duration": 56,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 2,
+          "weight": 0.9817731660238156,
+          "release_time": 10,
+          "due_date": 285,
+          "deadline": null
+        }
+      ],
+      "machines": [
+        {
+          "id": "M1",
+          "name": "マシン1",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M2",
+          "name": "マシン2",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M3",
+          "name": "マシン3",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M4",
+          "name": "マシン4",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M5",
+          "name": "マシン5",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        }
+      ],
+      "resources": null,
+      "optimization_objective": "makespan",
+      "time_horizon": 500,
+      "allow_preemption": false,
+      "transportation_times": null,
+      "setup_times_included": true,
+      "max_solve_time_seconds": 300,
+      "optimality_gap_tolerance": 0.01
+    },
+    "default_solver_config": {
+      "solver_type": "pyjobshop",
+      "time_limit_seconds": 30,
+      "optimization_objective": "minimize_makespan"
+    },
+    "default_analysis_config": {
+      "include_critical_path": true,
+      "include_bottleneck_analysis": true,
+      "include_improvement_suggestions": true,
+      "include_gantt_chart": true
+    },
+    "tags": [
+      "medium",
+      "project"
+    ],
+    "created_at": "2025-09-12 19:36:15.536065",
+    "updated_at": "2025-09-12 19:36:15.536065",
+    "usage_count": 0,
+    "is_public": true,
+    "created_by": "system"
+  },
+  "predefined_複雑フローショップテンプレート": {
+    "id": "predefined_複雑フローショップテンプレート",
+    "name": "複雑フローショップテンプレート",
+    "description": "8台の機械で15のジョブを処理する複雑なフローライン",
+    "category": "manufacturing",
+    "problem_template": {
+      "problem_type": "job_shop",
+      "jobs": [
+        {
+          "id": "J1",
+          "name": "ジョブ1",
+          "operations": [
+            {
+              "id": "J1_O1",
+              "job_id": "J1",
+              "machine_id": "M4",
+              "duration": 31,
+              "position_in_job": 0,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O2",
+              "job_id": "J1",
+              "machine_id": "M1",
+              "duration": 42,
+              "position_in_job": 1,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O3",
+              "job_id": "J1",
+              "machine_id": "M8",
+              "duration": 29,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O4",
+              "job_id": "J1",
+              "machine_id": "M7",
+              "duration": 49,
+              "position_in_job": 3,
+              "setup_time": 1,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J1_O5",
+              "job_id": "J1",
+              "machine_id": "M8",
+              "duration": 45,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 1.7010671013345733,
+          "release_time": 18,
+          "due_date": 227,
+          "deadline": null
+        },
+        {
+          "id": "J2",
+          "name": "ジョブ2",
+          "operations": [
+            {
+              "id": "J2_O1",
+              "job_id": "J2",
+              "machine_id": "M5",
+              "duration": 13,
+              "position_in_job": 0,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O2",
+              "job_id": "J2",
+              "machine_id": "M4",
+              "duration": 41,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O3",
+              "job_id": "J2",
+              "machine_id": "M8",
+              "duration": 36,
+              "position_in_job": 2,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O4",
+              "job_id": "J2",
+              "machine_id": "M7",
+              "duration": 48,
+              "position_in_job": 3,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O5",
+              "job_id": "J2",
+              "machine_id": "M3",
+              "duration": 51,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J2_O6",
+              "job_id": "J2",
+              "machine_id": "M5",
+              "duration": 46,
+              "position_in_job": 5,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 1,
+          "weight": 1.5420956430057315,
+          "release_time": 26,
+          "due_date": 207,
+          "deadline": null
+        },
+        {
+          "id": "J3",
+          "name": "ジョブ3",
+          "operations": [
+            {
+              "id": "J3_O1",
+              "job_id": "J3",
+              "machine_id": "M7",
+              "duration": 10,
+              "position_in_job": 0,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O2",
+              "job_id": "J3",
+              "machine_id": "M2",
+              "duration": 14,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O3",
+              "job_id": "J3",
+              "machine_id": "M7",
+              "duration": 25,
+              "position_in_job": 2,
+              "setup_time": 2,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O4",
+              "job_id": "J3",
+              "machine_id": "M3",
+              "duration": 15,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J3_O5",
+              "job_id": "J3",
+              "machine_id": "M3",
+              "duration": 58,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 2,
+          "weight": 1.4390391298457803,
+          "release_time": 29,
+          "due_date": 265,
+          "deadline": null
+        },
+        {
+          "id": "J4",
+          "name": "ジョブ4",
+          "operations": [
+            {
+              "id": "J4_O1",
+              "job_id": "J4",
+              "machine_id": "M6",
+              "duration": 14,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O2",
+              "job_id": "J4",
+              "machine_id": "M7",
+              "duration": 16,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O3",
+              "job_id": "J4",
+              "machine_id": "M3",
+              "duration": 23,
+              "position_in_job": 2,
+              "setup_time": 1,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O4",
+              "job_id": "J4",
+              "machine_id": "M3",
+              "duration": 58,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J4_O5",
+              "job_id": "J4",
+              "machine_id": "M2",
+              "duration": 19,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 5,
+          "weight": 1.2355921421849043,
+          "release_time": 17,
+          "due_date": 386,
+          "deadline": null
+        },
+        {
+          "id": "J5",
+          "name": "ジョブ5",
+          "operations": [
+            {
+              "id": "J5_O1",
+              "job_id": "J5",
+              "machine_id": "M5",
+              "duration": 55,
+              "position_in_job": 0,
+              "setup_time": 5,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O2",
+              "job_id": "J5",
+              "machine_id": "M4",
+              "duration": 48,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O3",
+              "job_id": "J5",
+              "machine_id": "M3",
+              "duration": 60,
+              "position_in_job": 2,
+              "setup_time": 4,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O4",
+              "job_id": "J5",
+              "machine_id": "M2",
+              "duration": 46,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O5",
+              "job_id": "J5",
+              "machine_id": "M6",
+              "duration": 21,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J5_O6",
+              "job_id": "J5",
+              "machine_id": "M7",
+              "duration": 60,
+              "position_in_job": 5,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 1,
+          "weight": 0.9625812879803874,
+          "release_time": 9,
+          "due_date": 271,
+          "deadline": null
+        },
+        {
+          "id": "J6",
+          "name": "ジョブ6",
+          "operations": [
+            {
+              "id": "J6_O1",
+              "job_id": "J6",
+              "machine_id": "M4",
+              "duration": 20,
+              "position_in_job": 0,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O2",
+              "job_id": "J6",
+              "machine_id": "M6",
+              "duration": 59,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O3",
+              "job_id": "J6",
+              "machine_id": "M6",
+              "duration": 30,
+              "position_in_job": 2,
+              "setup_time": 3,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O4",
+              "job_id": "J6",
+              "machine_id": "M4",
+              "duration": 16,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O5",
+              "job_id": "J6",
+              "machine_id": "M4",
+              "duration": 31,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O6",
+              "job_id": "J6",
+              "machine_id": "M5",
+              "duration": 57,
+              "position_in_job": 5,
+              "setup_time": 8,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J6_O7",
+              "job_id": "J6",
+              "machine_id": "M8",
+              "duration": 11,
+              "position_in_job": 6,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 2,
+          "weight": 1.940206601772595,
+          "release_time": 30,
+          "due_date": 246,
+          "deadline": null
+        },
+        {
+          "id": "J7",
+          "name": "ジョブ7",
+          "operations": [
+            {
+              "id": "J7_O1",
+              "job_id": "J7",
+              "machine_id": "M1",
+              "duration": 14,
+              "position_in_job": 0,
+              "setup_time": 8,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J7_O2",
+              "job_id": "J7",
+              "machine_id": "M1",
+              "duration": 20,
+              "position_in_job": 1,
+              "setup_time": 8,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J7_O3",
+              "job_id": "J7",
+              "machine_id": "M1",
+              "duration": 35,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J7_O4",
+              "job_id": "J7",
+              "machine_id": "M4",
+              "duration": 12,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J7_O5",
+              "job_id": "J7",
+              "machine_id": "M1",
+              "duration": 20,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 5,
+          "weight": 1.4277511275016685,
+          "release_time": 30,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J8",
+          "name": "ジョブ8",
+          "operations": [
+            {
+              "id": "J8_O1",
+              "job_id": "J8",
+              "machine_id": "M7",
+              "duration": 58,
+              "position_in_job": 0,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O2",
+              "job_id": "J8",
+              "machine_id": "M6",
+              "duration": 21,
+              "position_in_job": 1,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O3",
+              "job_id": "J8",
+              "machine_id": "M2",
+              "duration": 36,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O4",
+              "job_id": "J8",
+              "machine_id": "M8",
+              "duration": 35,
+              "position_in_job": 3,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O5",
+              "job_id": "J8",
+              "machine_id": "M2",
+              "duration": 58,
+              "position_in_job": 4,
+              "setup_time": 9,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O6",
+              "job_id": "J8",
+              "machine_id": "M4",
+              "duration": 57,
+              "position_in_job": 5,
+              "setup_time": 9,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J8_O7",
+              "job_id": "J8",
+              "machine_id": "M3",
+              "duration": 16,
+              "position_in_job": 6,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 0.6346394550088668,
+          "release_time": 26,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J9",
+          "name": "ジョブ9",
+          "operations": [
+            {
+              "id": "J9_O1",
+              "job_id": "J9",
+              "machine_id": "M3",
+              "duration": 56,
+              "position_in_job": 0,
+              "setup_time": 9,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J9_O2",
+              "job_id": "J9",
+              "machine_id": "M6",
+              "duration": 30,
+              "position_in_job": 1,
+              "setup_time": 3,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J9_O3",
+              "job_id": "J9",
+              "machine_id": "M6",
+              "duration": 22,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J9_O4",
+              "job_id": "J9",
+              "machine_id": "M6",
+              "duration": 17,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J9_O5",
+              "job_id": "J9",
+              "machine_id": "M1",
+              "duration": 44,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 2,
+          "weight": 0.6605770656067294,
+          "release_time": 24,
+          "due_date": 217,
+          "deadline": null
+        },
+        {
+          "id": "J10",
+          "name": "ジョブ10",
+          "operations": [
+            {
+              "id": "J10_O1",
+              "job_id": "J10",
+              "machine_id": "M4",
+              "duration": 49,
+              "position_in_job": 0,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O2",
+              "job_id": "J10",
+              "machine_id": "M3",
+              "duration": 29,
+              "position_in_job": 1,
+              "setup_time": 2,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O3",
+              "job_id": "J10",
+              "machine_id": "M8",
+              "duration": 50,
+              "position_in_job": 2,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O4",
+              "job_id": "J10",
+              "machine_id": "M5",
+              "duration": 50,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O5",
+              "job_id": "J10",
+              "machine_id": "M7",
+              "duration": 18,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O6",
+              "job_id": "J10",
+              "machine_id": "M7",
+              "duration": 17,
+              "position_in_job": 5,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J10_O7",
+              "job_id": "J10",
+              "machine_id": "M8",
+              "duration": 38,
+              "position_in_job": 6,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 5,
+          "weight": 0.9794803167537705,
+          "release_time": 10,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J11",
+          "name": "ジョブ11",
+          "operations": [
+            {
+              "id": "J11_O1",
+              "job_id": "J11",
+              "machine_id": "M8",
+              "duration": 30,
+              "position_in_job": 0,
+              "setup_time": 2,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J11_O2",
+              "job_id": "J11",
+              "machine_id": "M6",
+              "duration": 57,
+              "position_in_job": 1,
+              "setup_time": 10,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J11_O3",
+              "job_id": "J11",
+              "machine_id": "M3",
+              "duration": 51,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J11_O4",
+              "job_id": "J11",
+              "machine_id": "M2",
+              "duration": 60,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J11_O5",
+              "job_id": "J11",
+              "machine_id": "M6",
+              "duration": 23,
+              "position_in_job": 4,
+              "setup_time": 8,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 2,
+          "weight": 1.9178156462437788,
+          "release_time": 25,
+          "due_date": 391,
+          "deadline": null
+        },
+        {
+          "id": "J12",
+          "name": "ジョブ12",
+          "operations": [
+            {
+              "id": "J12_O1",
+              "job_id": "J12",
+              "machine_id": "M7",
+              "duration": 42,
+              "position_in_job": 0,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J12_O2",
+              "job_id": "J12",
+              "machine_id": "M1",
+              "duration": 55,
+              "position_in_job": 1,
+              "setup_time": 5,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J12_O3",
+              "job_id": "J12",
+              "machine_id": "M3",
+              "duration": 22,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J12_O4",
+              "job_id": "J12",
+              "machine_id": "M7",
+              "duration": 48,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J12_O5",
+              "job_id": "J12",
+              "machine_id": "M2",
+              "duration": 15,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J12_O6",
+              "job_id": "J12",
+              "machine_id": "M4",
+              "duration": 35,
+              "position_in_job": 5,
+              "setup_time": 4,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 3,
+          "weight": 1.704556998515038,
+          "release_time": 28,
+          "due_date": 241,
+          "deadline": null
+        },
+        {
+          "id": "J13",
+          "name": "ジョブ13",
+          "operations": [
+            {
+              "id": "J13_O1",
+              "job_id": "J13",
+              "machine_id": "M5",
+              "duration": 52,
+              "position_in_job": 0,
+              "setup_time": 4,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J13_O2",
+              "job_id": "J13",
+              "machine_id": "M5",
+              "duration": 54,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J13_O3",
+              "job_id": "J13",
+              "machine_id": "M5",
+              "duration": 29,
+              "position_in_job": 2,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J13_O4",
+              "job_id": "J13",
+              "machine_id": "M1",
+              "duration": 40,
+              "position_in_job": 3,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J13_O5",
+              "job_id": "J13",
+              "machine_id": "M7",
+              "duration": 58,
+              "position_in_job": 4,
+              "setup_time": 7,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J13_O6",
+              "job_id": "J13",
+              "machine_id": "M7",
+              "duration": 52,
+              "position_in_job": 5,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 1,
+          "weight": 1.5920218151252743,
+          "release_time": 4,
+          "due_date": 239,
+          "deadline": null
+        },
+        {
+          "id": "J14",
+          "name": "ジョブ14",
+          "operations": [
+            {
+              "id": "J14_O1",
+              "job_id": "J14",
+              "machine_id": "M4",
+              "duration": 54,
+              "position_in_job": 0,
+              "setup_time": 3,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J14_O2",
+              "job_id": "J14",
+              "machine_id": "M2",
+              "duration": 51,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J14_O3",
+              "job_id": "J14",
+              "machine_id": "M5",
+              "duration": 17,
+              "position_in_job": 2,
+              "setup_time": 8,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J14_O4",
+              "job_id": "J14",
+              "machine_id": "M3",
+              "duration": 55,
+              "position_in_job": 3,
+              "setup_time": 6,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J14_O5",
+              "job_id": "J14",
+              "machine_id": "M7",
+              "duration": 20,
+              "position_in_job": 4,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 5,
+          "weight": 0.5705118476673997,
+          "release_time": 6,
+          "due_date": null,
+          "deadline": null
+        },
+        {
+          "id": "J15",
+          "name": "ジョブ15",
+          "operations": [
+            {
+              "id": "J15_O1",
+              "job_id": "J15",
+              "machine_id": "M2",
+              "duration": 35,
+              "position_in_job": 0,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J15_O2",
+              "job_id": "J15",
+              "machine_id": "M4",
+              "duration": 43,
+              "position_in_job": 1,
+              "setup_time": 0,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J15_O3",
+              "job_id": "J15",
+              "machine_id": "M3",
+              "duration": 14,
+              "position_in_job": 2,
+              "setup_time": 1,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J15_O4",
+              "job_id": "J15",
+              "machine_id": "M4",
+              "duration": 56,
+              "position_in_job": 3,
+              "setup_time": 3,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            },
+            {
+              "id": "J15_O5",
+              "job_id": "J15",
+              "machine_id": "M2",
+              "duration": 29,
+              "position_in_job": 4,
+              "setup_time": 4,
+              "eligible_machines": null,
+              "earliest_start": 0,
+              "latest_finish": null,
+              "skill_requirements": null
+            }
+          ],
+          "priority": 4,
+          "weight": 1.4339573871898659,
+          "release_time": 20,
+          "due_date": 316,
+          "deadline": null
+        }
+      ],
+      "machines": [
+        {
+          "id": "M1",
+          "name": "マシン1",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M2",
+          "name": "マシン2",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M3",
+          "name": "マシン3",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M4",
+          "name": "マシン4",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M5",
+          "name": "マシン5",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M6",
+          "name": "マシン6",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M7",
+          "name": "マシン7",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        },
+        {
+          "id": "M8",
+          "name": "マシン8",
+          "capacity": 1,
+          "available_from": 0,
+          "available_until": 480,
+          "setup_matrix": null,
+          "skills": null,
+          "maintenance_windows": null
+        }
+      ],
+      "resources": null,
+      "optimization_objective": "makespan",
+      "time_horizon": 500,
+      "allow_preemption": false,
+      "transportation_times": null,
+      "setup_times_included": true,
+      "max_solve_time_seconds": 300,
+      "optimality_gap_tolerance": 0.01
+    },
+    "default_solver_config": {
+      "solver_type": "pyjobshop",
+      "time_limit_seconds": 30,
+      "optimization_objective": "minimize_makespan"
+    },
+    "default_analysis_config": {
+      "include_critical_path": true,
+      "include_bottleneck_analysis": true,
+      "include_improvement_suggestions": true,
+      "include_gantt_chart": true
+    },
+    "tags": [
+      "complex",
+      "manufacturing"
+    ],
+    "created_at": "2025-09-12 19:36:15.536237",
+    "updated_at": "2025-09-12 19:36:15.536237",
+    "usage_count": 0,
+    "is_public": true,
+    "created_by": "system"
+  }
+}

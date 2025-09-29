@@ -1,0 +1,24 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - 00core.ipynb
+      - 01abc.ipynb
+      - 02metroVI.ipynb
+      - 03inventory.ipynb
+      - 04scml2.ipynb
+      - 05lnd.ipynb
+      - 06forecast.ipynb
+      - 07optseq.ipynb
+      - 09scrm.ipynb
+      - 10shift.ipynb
+      - 11lotsize.ipynb
+      - 12snd.ipynb
+      - 13rm.ipynb
+      - 14scop.ipynb
+      - 15mypulp.ipynb
+      - 16data_generation.ipynb
+      - 17recommender.ipynb
+      - 18moai.ipynb
+      - 20autogen.ipynb
+      - temp-plot.html

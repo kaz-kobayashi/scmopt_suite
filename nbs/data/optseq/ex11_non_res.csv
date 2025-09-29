@@ -1,0 +1,2 @@
+,name,rhs,direction,weight
+0,budget_constraint,1,<=,inf

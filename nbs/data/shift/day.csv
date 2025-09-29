@@ -1,0 +1,6 @@
+,id,day,day_of_week,day_type
+0,0,2020-05-01,Fri,weekday
+1,1,2020-05-02,Sat,weekday
+2,2,2020-05-03,Holiday,holiday
+3,3,2020-05-04,Holiday,holiday
+4,4,2020-05-05,Holiday,holiday
