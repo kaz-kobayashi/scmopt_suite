@@ -11,16 +11,15 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# 基本的な依存関係のみインストール
-RUN pip install --no-cache-dir \
-    fastapi==0.104.1 \
-    uvicorn[standard]==0.24.0 \
-    python-multipart==0.0.6 \
-    python-jose[cryptography]==3.3.0 \
-    passlib[bcrypt]==1.7.4 \
-    SQLAlchemy==2.0.23 \
-    psycopg2-binary==2.9.9 \
-    email-validator==2.1.0
+# システム依存関係
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# requirements-auth.txtをコピーして依存関係をインストール
+COPY requirements-auth.txt ./
+RUN pip install --no-cache-dir -r requirements-auth.txt
 
 # 必要な最小限のコードのみコピー
 COPY backend/app ./app
