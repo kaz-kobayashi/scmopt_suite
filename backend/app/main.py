@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.routes import analytics, inventory, routing, lnd, lotsize, scrm, snd, rm, shift, jobshop, templates, pyvrp_routes, async_vrp_routes, websocket_routes, advanced_vrp_routes, batch_vrp_routes, auth
 from app.routers import realtime, websocket, data_import_export
 from app.database import engine, Base
+import os
 
 app = FastAPI(
     title="SCMOPT2 API",
@@ -51,3 +54,15 @@ async def root():
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
+# 静的ファイル（React）を配信
+if os.path.exists("static"):
+    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+    
+    # SPAのルーティング対応
+    @app.get("/{path:path}")
+    async def serve_spa(path: str):
+        file_path = f"static/{path}"
+        if os.path.exists(file_path) and os.path.isfile(file_path):
+            return FileResponse(file_path)
+        return FileResponse("static/index.html")
