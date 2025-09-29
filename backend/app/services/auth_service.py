@@ -1,5 +1,6 @@
 import os
 import logging
+import hashlib
 from datetime import datetime, timedelta
 from typing import Optional
 from fastapi import Depends, HTTPException, status
@@ -29,15 +30,16 @@ class AuthService:
     @staticmethod
     def verify_password(plain_password: str, hashed_password: str) -> bool:
         """Verify a password against its hash"""
-        return pwd_context.verify(plain_password, hashed_password)
+        # Pre-hash with SHA256 to match the hashing process
+        pre_hash = hashlib.sha256(plain_password.encode('utf-8')).hexdigest()
+        return pwd_context.verify(pre_hash, hashed_password)
     
     @staticmethod
     def get_password_hash(password: str) -> str:
-        """Hash a password"""
-        # bcrypt has a 72 byte limit, truncate if necessary
-        if len(password.encode('utf-8')) > 72:
-            password = password.encode('utf-8')[:72].decode('utf-8', errors='ignore')
-        return pwd_context.hash(password)
+        """Hash a password using SHA256 + bcrypt to avoid length limits"""
+        # Pre-hash with SHA256 to avoid bcrypt 72-byte limit
+        pre_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        return pwd_context.hash(pre_hash)
     
     @staticmethod
     def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
