@@ -4,7 +4,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.auth import UserCreate, User, Token, LoginRequest, RegisterRequest
-from app.services.auth_service import AuthService, ACCESS_TOKEN_EXPIRE_MINUTES
+from app.services.auth_service import AuthService, ACCESS_TOKEN_EXPIRE_MINUTES, get_current_user
 
 router = APIRouter(
     prefix="/auth",
@@ -76,3 +76,10 @@ async def login_for_access_token(
     )
     
     return {"access_token": access_token, "token_type": "bearer"}
+
+@router.get("/me", response_model=User)
+async def get_current_user_info(
+    current_user = Depends(get_current_user)
+):
+    """Get current authenticated user information"""
+    return current_user

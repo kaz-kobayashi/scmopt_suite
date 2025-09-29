@@ -14,6 +14,8 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
+  Button,
+  Divider,
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -29,7 +31,10 @@ import {
   Hub as SNDIcon,
   TrendingUp as RMIcon,
   Assignment as AdvancedVRPIcon,
+  Logout as LogoutIcon,
+  Person as PersonIcon,
 } from '@mui/icons-material';
+import { useAuth } from '../contexts/AuthContext';
 
 const drawerWidth = 240;
 
@@ -64,6 +69,7 @@ const Layout: React.FC<LayoutProps> = ({ children, onNavigate, currentSection })
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { user, logout } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -93,6 +99,24 @@ const Layout: React.FC<LayoutProps> = ({ children, onNavigate, currentSection })
             </ListItemButton>
           </ListItem>
         ))}
+      </List>
+      <Divider />
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon><PersonIcon /></ListItemIcon>
+            <ListItemText 
+              primary={user?.full_name || 'ユーザー'} 
+              secondary={user?.email}
+            />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={logout}>
+            <ListItemIcon><LogoutIcon /></ListItemIcon>
+            <ListItemText primary="ログアウト" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </div>
   );

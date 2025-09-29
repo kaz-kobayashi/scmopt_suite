@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
+import Login from './components/Login';
+import Register from './components/Register';
 import Analytics from './components/Analytics';
 import Inventory from './components/Inventory';
 import Routing from './components/Routing';
@@ -38,8 +41,10 @@ const theme = createTheme({
   },
 });
 
-function App() {
+const AppContent: React.FC = () => {
   const [currentSection, setCurrentSection] = useState('dashboard');
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+  const { user, isLoading } = useAuth();
 
   const handleNavigate = (section: string) => {
     setCurrentSection(section);
@@ -75,6 +80,30 @@ function App() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          読み込み中...
+        </div>
+      </ThemeProvider>
+    );
+  }
+
+  if (!user) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {authMode === 'login' ? (
+          <Login onSwitchToRegister={() => setAuthMode('register')} />
+        ) : (
+          <Register onSwitchToLogin={() => setAuthMode('login')} />
+        )}
+      </ThemeProvider>
+    );
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -85,6 +114,14 @@ function App() {
         {renderCurrentSection()}
       </Layout>
     </ThemeProvider>
+  );
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 

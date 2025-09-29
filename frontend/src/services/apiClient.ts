@@ -7,6 +7,34 @@ const apiClient = axios.create({
   timeout: 120000, // Increased to 2 minutes for long-running analyses
 });
 
+// Add request interceptor to include JWT token
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('scmopt_token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor to handle auth errors
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem('scmopt_token');
+      localStorage.removeItem('scmopt_user');
+      window.location.reload(); // Redirect to login
+    }
+    return Promise.reject(error);
+  }
+);
+
 export interface ABCAnalysisResult {
   aggregated_data: Array<{
     [key: string]: string | number;
