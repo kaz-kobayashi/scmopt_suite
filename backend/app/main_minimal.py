@@ -27,7 +27,7 @@ app.add_middleware(
 # Include auth router only
 app.include_router(auth.router, prefix="/api", tags=["authentication"])
 
-@app.get("/")
+@app.get("/api")
 async def root():
     return {"message": "SCMOPT2 API Server", "version": "2.0.0", "status": "running"}
 
