@@ -5,5 +5,5 @@ PORT=${PORT:-8000}
 
 echo "Starting server on port $PORT..."
 
-# 起動
-exec uvicorn app.main_minimal:app --host 0.0.0.0 --port $PORT --log-level debug
+# 起動 - フル機能版のmainを使用
+exec uvicorn app.main:app --host 0.0.0.0 --port $PORT --log-level debug
