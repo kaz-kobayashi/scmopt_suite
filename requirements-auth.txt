@@ -24,3 +24,6 @@ pulp==2.8.0
 redis>=4.5.0
 celery>=5.3.0
 websockets>=11.0.0
+holidays>=0.34
+faker>=19.0.0
+kombu>=5.3.0
