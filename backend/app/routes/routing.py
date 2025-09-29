@@ -14,12 +14,13 @@ from app.services.routing_service import (
     optimize_delivery_schedule,
     calculate_distance_matrix
 )
-from app.services.pyvrp_service import optimize_vrp_with_pyvrp
-from app.services.hybrid_vrp_service import optimize_vrp_hybrid
-from app.services.pyvrp_standard_service import (
-    solve_vrplib_instance, 
-    solve_vrp_from_coordinates_standard
-)
+# PyVRP imports temporarily disabled
+# from app.services.pyvrp_service import optimize_vrp_with_pyvrp
+# from app.services.hybrid_vrp_service import optimize_vrp_hybrid
+# from app.services.pyvrp_standard_service import (
+#     solve_vrplib_instance, 
+#     solve_vrp_from_coordinates_standard
+# )
 
 router = APIRouter()
 
