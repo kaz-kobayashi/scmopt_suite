@@ -49,6 +49,12 @@ const Register: React.FC<RegisterProps> = ({ onSwitchToLogin }) => {
       return;
     }
 
+    if (password.length > 70) {
+      setError('パスワードは70文字以内である必要があります');
+      setIsLoading(false);
+      return;
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError('有効なメールアドレスを入力してください');
@@ -127,13 +133,14 @@ const Register: React.FC<RegisterProps> = ({ onSwitchToLogin }) => {
                 required
                 fullWidth
                 name="password"
-                label="パスワード（6文字以上）"
+                label="パスワード（6-70文字）"
                 type="password"
                 id="password"
                 autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
+                inputProps={{ maxLength: 70 }}
               />
               <TextField
                 margin="normal"
@@ -147,6 +154,7 @@ const Register: React.FC<RegisterProps> = ({ onSwitchToLogin }) => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={isLoading}
+                inputProps={{ maxLength: 70 }}
               />
               <Button
                 type="submit"
