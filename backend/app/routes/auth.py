@@ -104,3 +104,63 @@ async def debug_list_users(db: Session = Depends(get_db)):
         "total_users": len(users),
         "users": [{"email": user.email, "full_name": user.full_name, "created_at": user.created_at} for user in users]
     }
+
+@router.get("/debug/database")
+async def debug_database_info():
+    """Debug endpoint to check database configuration"""
+    import os
+    from app.database import DATABASE_URL, engine
+    
+    return {
+        "database_url": DATABASE_URL,
+        "database_type": "postgresql" if "postgresql" in DATABASE_URL else "sqlite" if "sqlite" in DATABASE_URL else "unknown",
+        "engine_url": str(engine.url),
+        "environment_variables": {
+            "DATABASE_URL": os.getenv("DATABASE_URL", "NOT SET"),
+            "POSTGRES_URL": os.getenv("POSTGRES_URL", "NOT SET"),
+            "PGHOST": os.getenv("PGHOST", "NOT SET"),
+            "PGPORT": os.getenv("PGPORT", "NOT SET"),
+            "PGUSER": os.getenv("PGUSER", "NOT SET"),
+            "PGPASSWORD": os.getenv("PGPASSWORD", "NOT SET") if os.getenv("PGPASSWORD") else "NOT SET",
+            "PGDATABASE": os.getenv("PGDATABASE", "NOT SET")
+        }
+    }
+
+@router.get("/debug/test-db")
+async def test_database_connection(db: Session = Depends(get_db)):
+    """Test database connection and operations"""
+    try:
+        from app.database import User
+        # Test basic query
+        user_count = db.query(User).count()
+        
+        # Test inserting a dummy user
+        test_email = "test@example.com"
+        existing_test = db.query(User).filter(User.email == test_email).first()
+        
+        if not existing_test:
+            from app.services.auth_service import AuthService
+            test_user = User(
+                email=test_email,
+                full_name="Test User",
+                hashed_password=AuthService.get_password_hash("test123")
+            )
+            db.add(test_user)
+            db.commit()
+            db.refresh(test_user)
+            created_user_id = test_user.id
+        else:
+            created_user_id = existing_test.id
+        
+        return {
+            "status": "success",
+            "user_count": user_count,
+            "test_user_created": created_user_id,
+            "database_working": True
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": str(e),
+            "database_working": False
+        }
