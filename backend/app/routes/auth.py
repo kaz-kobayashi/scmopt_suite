@@ -83,3 +83,13 @@ async def get_current_user_info(
 ):
     """Get current authenticated user information"""
     return current_user
+
+@router.get("/debug/users")
+async def debug_list_users(db: Session = Depends(get_db)):
+    """Debug endpoint to list all registered users (temporary)"""
+    from app.database import User
+    users = db.query(User).all()
+    return {
+        "total_users": len(users),
+        "users": [{"email": user.email, "full_name": user.full_name, "created_at": user.created_at} for user in users]
+    }
