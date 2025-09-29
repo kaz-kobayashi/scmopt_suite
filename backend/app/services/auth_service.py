@@ -1,4 +1,5 @@
 import os
+import logging
 from datetime import datetime, timedelta
 from typing import Optional
 from fastapi import Depends, HTTPException, status
@@ -8,6 +9,10 @@ from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 from app.database import get_db, User
 from app.models.auth import TokenData
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Security configuration
 SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here-change-in-production")
@@ -59,21 +64,34 @@ class AuthService:
     @staticmethod
     def get_user_by_email(db: Session, email: str) -> Optional[User]:
         """Get user by email"""
-        return db.query(User).filter(User.email == email).first()
+        try:
+            user = db.query(User).filter(User.email == email).first()
+            logger.info(f"get_user_by_email({email}) -> {'Found' if user else 'Not found'}")
+            return user
+        except Exception as e:
+            logger.error(f"get_user_by_email({email}) error: {e}")
+            raise
     
     @staticmethod
     def create_user(db: Session, email: str, password: str, full_name: str) -> User:
         """Create a new user"""
-        hashed_password = AuthService.get_password_hash(password)
-        db_user = User(
-            email=email,
-            full_name=full_name,
-            hashed_password=hashed_password
-        )
-        db.add(db_user)
-        db.commit()
-        db.refresh(db_user)
-        return db_user
+        try:
+            logger.info(f"Attempting to create user: {email}")
+            hashed_password = AuthService.get_password_hash(password)
+            db_user = User(
+                email=email,
+                full_name=full_name,
+                hashed_password=hashed_password
+            )
+            db.add(db_user)
+            db.commit()
+            db.refresh(db_user)
+            logger.info(f"Successfully created user: {email} with ID: {db_user.id}")
+            return db_user
+        except Exception as e:
+            logger.error(f"Failed to create user {email}: {e}")
+            db.rollback()
+            raise
     
     @staticmethod
     def authenticate_user(db: Session, email: str, password: str) -> Optional[User]:
