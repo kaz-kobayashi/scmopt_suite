@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+import mimetypes
 from app.routes import analytics, inventory, routing, lnd, lotsize, scrm, snd, rm, shift, jobshop, templates, auth
 # PyVRP routes temporarily disabled due to installation issues
 # from app.routes import pyvrp_routes, async_vrp_routes, websocket_routes, advanced_vrp_routes, batch_vrp_routes
@@ -80,39 +81,42 @@ async def debug_static_files():
 
 # 静的ファイル（React）を配信
 static_dir = "static"
-if os.path.exists(static_dir):
-    # Mount static files for CSS, JS, and other assets
-    app.mount("/static", StaticFiles(directory=static_dir), name="static_assets")
-    
-    # Serve React app for root and SPA routes
-    @app.get("/")
-    async def serve_react_app():
+
+@app.get("/")
+async def serve_react_app():
+    """Serve the React app's index.html"""
+    if os.path.exists(static_dir):
         index_path = os.path.join(static_dir, "index.html")
         if os.path.exists(index_path):
             return FileResponse(index_path)
         else:
             return {"error": "index.html not found", "static_dir_exists": True}
+    else:
+        return {"message": "SCMOPT2 API Server", "version": "2.0.0", "status": "running", "static_dir_exists": False}
+
+# Catch-all route for SPA and static files
+@app.get("/{path:path}")
+async def serve_static_or_spa(path: str):
+    """Serve static files or SPA routes"""
+    # Don't catch API routes, health check, or debug routes
+    if path.startswith("api/") or path == "health" or path.startswith("debug/"):
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail="Not Found")
     
-    @app.get("/{path:path}")
-    async def serve_spa(path: str):
-        # Don't catch API routes and health check
-        if path.startswith("api/") or path == "health":
-            from fastapi import HTTPException
-            raise HTTPException(status_code=404, detail="Not Found")
-        
+    if os.path.exists(static_dir):
         # Check if it's a static file (CSS, JS, images, etc.)
         file_path = os.path.join(static_dir, path)
         if os.path.exists(file_path) and os.path.isfile(file_path):
-            return FileResponse(file_path)
+            # Determine media type based on file extension
+            media_type, _ = mimetypes.guess_type(file_path)
+            return FileResponse(file_path, media_type=media_type)
         
         # For all SPA routes, serve index.html
         index_path = os.path.join(static_dir, "index.html")
         if os.path.exists(index_path):
-            return FileResponse(index_path)
+            return FileResponse(index_path, media_type="text/html")
         else:
             return {"error": "index.html not found for SPA route", "path": path}
-else:
-    # Fallback when no static files exist
-    @app.get("/")
-    async def root():
-        return {"message": "SCMOPT2 API Server", "version": "2.0.0", "status": "running", "static_dir_exists": False}
+    else:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail="Static files not found")
