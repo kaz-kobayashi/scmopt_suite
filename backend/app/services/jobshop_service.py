@@ -16,6 +16,7 @@ try:
     ORTOOLS_AVAILABLE = True
 except ImportError:
     ORTOOLS_AVAILABLE = False
+    cp_model = None
     logging.warning("OR-Tools not available. Some scheduling features will be limited.")
 
 from ..models.jobshop_models import (
@@ -546,7 +547,7 @@ class JobShopService:
     
     def _add_ortools_constraints(
         self,
-        model: cp_model.CpModel,
+        model: 'cp_model.CpModel',
         problem: JobShopProblem,
         all_tasks: Dict[Tuple[str, int], Dict[str, Any]],
         machine_to_intervals: Dict[str, List]
@@ -583,7 +584,7 @@ class JobShopService:
     
     def _set_ortools_objective(
         self,
-        model: cp_model.CpModel,
+        model: 'cp_model.CpModel',
         problem: JobShopProblem,
         all_tasks: Dict[Tuple[str, int], Dict[str, Any]],
         horizon: int
@@ -631,7 +632,7 @@ class JobShopService:
     def _convert_ortools_solution(
         self,
         problem: JobShopProblem,
-        solver: cp_model.CpSolver,
+        solver: 'cp_model.CpSolver',
         all_tasks: Dict[Tuple[str, int], Dict[str, Any]],
         solve_time: float,
         analysis_config: AnalysisConfig
