@@ -50,22 +50,36 @@ app.include_router(websocket.router, tags=["websocket"])
 app.include_router(data_import_export.router, prefix="/api", tags=["data-import-export"])
 app.include_router(auth.router, prefix="/api", tags=["authentication"])
 
-@app.get("/")
-async def root():
-    return {"message": "SCMOPT2 API Server", "version": "2.0.0", "status": "running"}
-
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
 
 # 静的ファイル（React）を配信
 if os.path.exists("static"):
-    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+    # Mount static files for assets (CSS, JS, images)
+    app.mount("/static", StaticFiles(directory="static"), name="static_files")
     
-    # SPAのルーティング対応
+    # Serve React app for all non-API routes
+    @app.get("/")
+    async def serve_react_app():
+        return FileResponse("static/index.html")
+    
     @app.get("/{path:path}")
     async def serve_spa(path: str):
+        # Don't catch API routes
+        if path.startswith("api/") or path.startswith("health"):
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404, detail="Not Found")
+        
+        # Check if it's a static file
         file_path = f"static/{path}"
         if os.path.exists(file_path) and os.path.isfile(file_path):
             return FileResponse(file_path)
+        
+        # For all other routes, serve the React app
         return FileResponse("static/index.html")
+else:
+    # Fallback when no static files exist
+    @app.get("/")
+    async def root():
+        return {"message": "SCMOPT2 API Server", "version": "2.0.0", "status": "running"}
