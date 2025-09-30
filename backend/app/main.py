@@ -54,32 +54,65 @@ app.include_router(auth.router, prefix="/api", tags=["authentication"])
 async def health_check():
     return {"status": "healthy"}
 
-# 静的ファイル（React）を配信
-if os.path.exists("static"):
-    # Mount static files for assets (CSS, JS, images)
-    app.mount("/static", StaticFiles(directory="static"), name="static_files")
+@app.get("/debug/static")
+async def debug_static_files():
+    """デバッグ用：静的ファイルの状況を確認"""
+    static_dir = "static"
+    result = {
+        "static_dir_exists": os.path.exists(static_dir),
+        "current_working_dir": os.getcwd(),
+        "static_dir_path": os.path.abspath(static_dir) if os.path.exists(static_dir) else None,
+    }
     
-    # Serve React app for all non-API routes
+    if os.path.exists(static_dir):
+        try:
+            files = os.listdir(static_dir)
+            result["files_in_static"] = files[:10]  # 最初の10ファイルのみ
+            result["index_html_exists"] = "index.html" in files
+            
+            if "index.html" in files:
+                index_path = os.path.join(static_dir, "index.html")
+                result["index_html_size"] = os.path.getsize(index_path)
+        except Exception as e:
+            result["error_reading_static"] = str(e)
+    
+    return result
+
+# 静的ファイル（React）を配信
+static_dir = "static"
+if os.path.exists(static_dir):
+    # Mount static files for CSS, JS, and other assets
+    app.mount("/static", StaticFiles(directory=static_dir), name="static_assets")
+    
+    # Serve React app for root and SPA routes
     @app.get("/")
     async def serve_react_app():
-        return FileResponse("static/index.html")
+        index_path = os.path.join(static_dir, "index.html")
+        if os.path.exists(index_path):
+            return FileResponse(index_path)
+        else:
+            return {"error": "index.html not found", "static_dir_exists": True}
     
     @app.get("/{path:path}")
     async def serve_spa(path: str):
-        # Don't catch API routes
-        if path.startswith("api/") or path.startswith("health"):
+        # Don't catch API routes and health check
+        if path.startswith("api/") or path == "health":
             from fastapi import HTTPException
             raise HTTPException(status_code=404, detail="Not Found")
         
-        # Check if it's a static file
-        file_path = f"static/{path}"
+        # Check if it's a static file (CSS, JS, images, etc.)
+        file_path = os.path.join(static_dir, path)
         if os.path.exists(file_path) and os.path.isfile(file_path):
             return FileResponse(file_path)
         
-        # For all other routes, serve the React app
-        return FileResponse("static/index.html")
+        # For all SPA routes, serve index.html
+        index_path = os.path.join(static_dir, "index.html")
+        if os.path.exists(index_path):
+            return FileResponse(index_path)
+        else:
+            return {"error": "index.html not found for SPA route", "path": path}
 else:
     # Fallback when no static files exist
     @app.get("/")
     async def root():
-        return {"message": "SCMOPT2 API Server", "version": "2.0.0", "status": "running"}
+        return {"message": "SCMOPT2 API Server", "version": "2.0.0", "status": "running", "static_dir_exists": False}
